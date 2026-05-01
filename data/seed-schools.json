@@ -1,0 +1,2011 @@
+[
+  {
+    "slug": "sans-souci-girls-high-school",
+    "name": "Sans Souci Girls' High School",
+    "type": "model_c",
+    "province": "Western Cape",
+    "suburb": "Newlands",
+    "address": "Avenue de Mist, Newlands, Cape Town, 7700",
+    "latitude": -33.9775,
+    "longitude": 18.4667,
+    "website_url": "https://www.sanssouci.co.za",
+    "logo_url": null,
+    "description": "Sans Souci is a public girls' high school in Newlands, known for its strong academics and sporting traditions.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3200,
+    "fee_monthly_max": 3500,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Hockey", "Netball", "Choir", "Debating", "Art"],
+    "is_featured": true,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 250,
+        "application_url": "https://www.sanssouci.co.za/admissions/",
+        "notes": "Applications for 2027 intake."
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-10", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "rondebosch-boys-high-school",
+    "name": "Rondebosch Boys' High School",
+    "type": "model_c",
+    "province": "Western Cape",
+    "suburb": "Rondebosch",
+    "address": "Canigou Avenue, Rondebosch, Cape Town, 7700",
+    "latitude": -33.9657,
+    "longitude": 18.4714,
+    "website_url": "https://www.rondebosch.com",
+    "logo_url": null,
+    "description": "A historic boys' public school in Rondebosch, founded in 1897, with a strong academic and sporting record.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3400,
+    "fee_monthly_max": 3600,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Cricket", "Rowing", "Music", "Debating"],
+    "is_featured": true,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-15",
+        "application_fee": 300,
+        "application_url": "https://www.rondebosch.com/admissions/",
+        "notes": "For 2027 intake."
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-17", "start_time": "09:30", "end_time": "13:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "westerford-high-school",
+    "name": "Westerford High School",
+    "type": "model_c",
+    "province": "Western Cape",
+    "suburb": "Newlands",
+    "address": "Campground Road, Newlands, Cape Town, 7700",
+    "latitude": -33.9788,
+    "longitude": 18.4654,
+    "website_url": "https://www.westerford.co.za",
+    "logo_url": null,
+    "description": "Co-ed public high school consistently ranked among the top academic schools in South Africa.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3500,
+    "fee_monthly_max": 3800,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Hockey", "Rowing", "Orchestra", "Science Olympiads"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-02-01",
+        "close_date": "2026-04-30",
+        "application_fee": 300,
+        "application_url": "https://www.westerford.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-04-26", "start_time": "10:00", "end_time": "13:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "sacs-south-african-college-schools",
+    "name": "South African College Schools (SACS)",
+    "type": "model_c",
+    "province": "Western Cape",
+    "suburb": "Newlands",
+    "address": "Newlands Avenue, Newlands, Cape Town, 7700",
+    "latitude": -33.9801,
+    "longitude": 18.4626,
+    "website_url": "https://www.sacs.za.net",
+    "logo_url": null,
+    "description": "One of the oldest schools in South Africa (est. 1829), a top boys' public school with a rich heritage.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3300,
+    "fee_monthly_max": 3500,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Cricket", "Water polo", "Orchestra"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-02-15",
+        "close_date": "2026-05-15",
+        "application_fee": 300,
+        "application_url": "https://www.sacs.za.net/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-03", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "rustenburg-girls-high-school",
+    "name": "Rustenburg Girls' High School",
+    "type": "model_c",
+    "province": "Western Cape",
+    "suburb": "Rondebosch",
+    "address": "Campground Road, Rondebosch, Cape Town, 7700",
+    "latitude": -33.9683,
+    "longitude": 18.4672,
+    "website_url": "https://www.rghs.org.za",
+    "logo_url": null,
+    "description": "Leading girls' public high school with excellent academic results and strong arts and sports programmes.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3300,
+    "fee_monthly_max": 3600,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "NSC",
+    "extracurriculars": ["Hockey", "Debating", "Choir", "Art"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-02-01",
+        "close_date": "2026-04-30",
+        "application_fee": 300,
+        "application_url": "https://www.rghs.org.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-04-19", "start_time": "09:00", "end_time": "12:30", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "bishops-diocesan-college",
+    "name": "Bishops Diocesan College",
+    "type": "private",
+    "province": "Western Cape",
+    "suburb": "Rondebosch",
+    "address": "Campground Road, Rondebosch, Cape Town, 7700",
+    "latitude": -33.9716,
+    "longitude": 18.4666,
+    "website_url": "https://www.bishops.org.za",
+    "logo_url": null,
+    "description": "Historic Anglican private boys' school founded in 1849. Highly-regarded academics, sport, and culture.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 24000,
+    "fee_monthly_max": 28000,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "IEB",
+    "extracurriculars": ["Rugby", "Cricket", "Rowing", "Orchestra", "Debating"],
+    "is_featured": true,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-01-31",
+        "application_fee": 800,
+        "application_url": "https://www.bishops.org.za/admissions/",
+        "notes": "Waiting lists apply; early application strongly advised."
+      },
+      {
+        "grade_group": "Grade R",
+        "open_date": "2025-06-01",
+        "close_date": "2025-12-01",
+        "application_fee": 800,
+        "application_url": "https://www.bishops.org.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-24", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "herschel-girls-school",
+    "name": "Herschel Girls' School",
+    "type": "private",
+    "province": "Western Cape",
+    "suburb": "Claremont",
+    "address": "Herschel Road, Claremont, Cape Town, 7708",
+    "latitude": -33.9816,
+    "longitude": 18.4671,
+    "website_url": "https://www.herschel.org.za",
+    "logo_url": null,
+    "description": "Leading private girls' school founded in 1922, offering an outstanding academic and extra-mural programme.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 22000,
+    "fee_monthly_max": 27000,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "IEB",
+    "extracurriculars": ["Hockey", "Netball", "Water polo", "Art", "Drama"],
+    "is_featured": true,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-01-31",
+        "application_fee": 750,
+        "application_url": "https://www.herschel.org.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-09", "start_time": "09:30", "end_time": "12:30", "location": "Senior School", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "sacred-heart-college-johannesburg",
+    "name": "Sacred Heart College",
+    "type": "private",
+    "province": "Gauteng",
+    "suburb": "Observatory",
+    "address": "13 Eckstein Street, Observatory, Johannesburg, 2198",
+    "latitude": -26.1811,
+    "longitude": 28.0817,
+    "website_url": "https://www.sacredheart.co.za",
+    "logo_url": null,
+    "description": "A Marist Brothers co-ed private school committed to inclusive, values-based education.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 12000,
+    "fee_monthly_max": 15000,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "IEB",
+    "extracurriculars": ["Soccer", "Chess", "Drama", "Environment club"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-03-31",
+        "application_fee": 500,
+        "application_url": "https://www.sacredheart.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-16", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "st-johns-college-johannesburg",
+    "name": "St John's College",
+    "type": "private",
+    "province": "Gauteng",
+    "suburb": "Houghton Estate",
+    "address": "St. David's Place, Houghton, Johannesburg, 2198",
+    "latitude": -26.1632,
+    "longitude": 28.0653,
+    "website_url": "https://www.stjohnscollege.co.za",
+    "logo_url": null,
+    "description": "Anglican private boys' school founded in 1898, with a strong reputation for academics and leadership.",
+    "grades_from": "Grade R",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 23000,
+    "fee_monthly_max": 29000,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "IEB",
+    "extracurriculars": ["Rugby", "Cricket", "Rowing", "Music"],
+    "is_featured": true,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-02-28",
+        "application_fee": 900,
+        "application_url": "https://www.stjohnscollege.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-23", "start_time": "09:00", "end_time": "12:00", "location": "College Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "roedean-school-sa",
+    "name": "Roedean School (SA)",
+    "type": "private",
+    "province": "Gauteng",
+    "suburb": "Parktown",
+    "address": "35 Princess of Wales Terrace, Parktown, Johannesburg, 2193",
+    "latitude": -26.1784,
+    "longitude": 28.0392,
+    "website_url": "https://www.roedeanschool.co.za",
+    "logo_url": null,
+    "description": "Independent girls' school founded in 1903, offering rigorous academics and a rich co-curricular life.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 20000,
+    "fee_monthly_max": 26000,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "IEB",
+    "extracurriculars": ["Rowing", "Hockey", "Netball", "Choir"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-08-01",
+        "close_date": "2026-03-15",
+        "application_fee": 750,
+        "application_url": "https://www.roedeanschool.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-04-25", "start_time": "09:00", "end_time": "13:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "king-edward-vii-school",
+    "name": "King Edward VII School",
+    "type": "model_c",
+    "province": "Gauteng",
+    "suburb": "Houghton",
+    "address": "St Patrick Road, Houghton, Johannesburg, 2198",
+    "latitude": -26.1652,
+    "longitude": 28.0548,
+    "website_url": "https://www.kes.co.za",
+    "logo_url": null,
+    "description": "Historic public boys' school (est. 1903) with a large student body and excellent sporting record.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3800,
+    "fee_monthly_max": 4200,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Cricket", "Water polo", "Athletics"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 300,
+        "application_url": "https://www.kes.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-10", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "parktown-boys-high-school",
+    "name": "Parktown Boys' High School",
+    "type": "model_c",
+    "province": "Gauteng",
+    "suburb": "Parktown",
+    "address": "Wellington Road, Parktown, Johannesburg, 2193",
+    "latitude": -26.1799,
+    "longitude": 28.0361,
+    "website_url": "https://www.parktownboys.org",
+    "logo_url": null,
+    "description": "Public boys' high school founded in 1926, strong academic and sporting traditions.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3100,
+    "fee_monthly_max": 3400,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Cricket", "Hockey", "Choir"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 250,
+        "application_url": "https://www.parktownboys.org/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-24", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "pretoria-boys-high-school",
+    "name": "Pretoria Boys High School",
+    "type": "model_c",
+    "province": "Gauteng",
+    "suburb": "Brooklyn",
+    "address": "Roper Street, Brooklyn, Pretoria, 0181",
+    "latitude": -25.7652,
+    "longitude": 28.2368,
+    "website_url": "https://www.boyshigh.com",
+    "logo_url": null,
+    "description": "One of South Africa's leading public boys' schools; alumni include Elon Musk and other notables.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3500,
+    "fee_monthly_max": 3800,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "NSC",
+    "extracurriculars": ["Cricket", "Rugby", "Chess", "Debating"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 350,
+        "application_url": "https://www.boyshigh.com/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-04-27", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "afrikaanse-hoer-meisieskool-pretoria",
+    "name": "Afrikaanse Hoër Meisieskool",
+    "type": "model_c",
+    "province": "Gauteng",
+    "suburb": "Arcadia",
+    "address": "Hamilton Street, Arcadia, Pretoria, 0083",
+    "latitude": -25.7506,
+    "longitude": 28.2185,
+    "website_url": "https://www.affies.co.za",
+    "logo_url": null,
+    "description": "A prestigious Afrikaans-medium girls' public high school with strong academic and sporting traditions.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 2800,
+    "fee_monthly_max": 3200,
+    "language": "Afrikaans",
+    "boarding": true,
+    "curriculum": "NSC",
+    "extracurriculars": ["Hockey", "Netball", "Choir", "Debating"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 200,
+        "application_url": "https://www.affies.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-04-19", "start_time": "08:30", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "st-marys-school-waverley",
+    "name": "St Mary's School, Waverley",
+    "type": "private",
+    "province": "Gauteng",
+    "suburb": "Waverley",
+    "address": "25 Athol Street, Waverley, Johannesburg, 2090",
+    "latitude": -26.1285,
+    "longitude": 28.0907,
+    "website_url": "https://www.stmary.co.za",
+    "logo_url": null,
+    "description": "Anglican independent girls' school founded in 1888, offering a broad academic and co-curricular programme.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 19000,
+    "fee_monthly_max": 24000,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "IEB",
+    "extracurriculars": ["Rowing", "Hockey", "Netball", "Drama", "Choir"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-02-28",
+        "application_fee": 600,
+        "application_url": "https://www.stmary.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-17", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "reddam-house-bedfordview",
+    "name": "Reddam House Bedfordview",
+    "type": "private",
+    "province": "Gauteng",
+    "suburb": "Bedfordview",
+    "address": "30 Concorde Road East, Bedfordview, 2007",
+    "latitude": -26.1838,
+    "longitude": 28.1369,
+    "website_url": "https://www.reddamhouse.com/bedfordview",
+    "logo_url": null,
+    "description": "Co-ed independent school with a strong emphasis on innovation, arts, and academic rigour.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 14000,
+    "fee_monthly_max": 19000,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "IEB",
+    "extracurriculars": ["Tennis", "Hockey", "Debating", "Drama", "Coding"],
+    "is_featured": true,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-03-31",
+        "application_fee": 500,
+        "application_url": "https://www.reddamhouse.com/bedfordview/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-31", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "reddam-house-constantia",
+    "name": "Reddam House Constantia",
+    "type": "private",
+    "province": "Western Cape",
+    "suburb": "Constantia",
+    "address": "Spaanschemat River Road, Constantia, Cape Town, 7806",
+    "latitude": -34.0321,
+    "longitude": 18.4353,
+    "website_url": "https://www.reddamhouse.com/constantia",
+    "logo_url": null,
+    "description": "Co-ed independent school offering a modern, values-based education from Pre-Primary to Grade 12.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 14000,
+    "fee_monthly_max": 19000,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "IEB",
+    "extracurriculars": ["Hockey", "Debating", "Art", "Music"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-03-31",
+        "application_fee": 500,
+        "application_url": "https://www.reddamhouse.com/constantia/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-30", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "crawford-international-la-lucia",
+    "name": "Crawford International La Lucia",
+    "type": "private",
+    "province": "KwaZulu-Natal",
+    "suburb": "La Lucia",
+    "address": "18 Armstrong Avenue, La Lucia, Durban, 4051",
+    "latitude": -29.7519,
+    "longitude": 31.0651,
+    "website_url": "https://www.crawfordinternational.co.za",
+    "logo_url": null,
+    "description": "Co-ed independent school offering a globally-focused academic programme and IEB curriculum.",
+    "grades_from": "Grade R",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 11000,
+    "fee_monthly_max": 15000,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "IEB",
+    "extracurriculars": ["Hockey", "Debating", "Robotics", "Drama"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-08-01",
+        "close_date": "2026-03-31",
+        "application_fee": 500,
+        "application_url": "https://www.crawfordinternational.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-11", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "hoerskool-jan-van-riebeeck",
+    "name": "Hoërskool Jan van Riebeeck",
+    "type": "model_c",
+    "province": "Western Cape",
+    "suburb": "Gardens",
+    "address": "1 Leeuwen Street, Cape Town, 8001",
+    "latitude": -33.9255,
+    "longitude": 18.4108,
+    "website_url": "https://www.janvanriebeeck.co.za",
+    "logo_url": null,
+    "description": "Historic Afrikaans-medium co-educational public high school in central Cape Town.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 2500,
+    "fee_monthly_max": 2900,
+    "language": "Afrikaans",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Hockey", "Music"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 150,
+        "application_url": "https://www.janvanriebeeck.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-12", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "camps-bay-high-school",
+    "name": "Camps Bay High School",
+    "type": "model_c",
+    "province": "Western Cape",
+    "suburb": "Camps Bay",
+    "address": "Berkley Road, Camps Bay, Cape Town, 8005",
+    "latitude": -33.9507,
+    "longitude": 18.3791,
+    "website_url": "https://www.cbhs.org.za",
+    "logo_url": null,
+    "description": "Co-educational public high school serving the Camps Bay and Atlantic Seaboard communities.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3100,
+    "fee_monthly_max": 3400,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Surfing", "Hockey", "Drama"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 200,
+        "application_url": "https://www.cbhs.org.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "cedar-house-school",
+    "name": "Cedar House School",
+    "type": "private",
+    "province": "Western Cape",
+    "suburb": "Kenilworth",
+    "address": "3 Roslyn Road, Kenilworth, Cape Town, 7708",
+    "latitude": -33.9966,
+    "longitude": 18.4698,
+    "website_url": "https://www.cedarhouse.co.za",
+    "logo_url": null,
+    "description": "Small, independent co-ed high school with a focus on individualised learning.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 11000,
+    "fee_monthly_max": 14000,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "IEB",
+    "extracurriculars": ["Art", "Music", "Drama", "Debating"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-04-30",
+        "application_fee": 500,
+        "application_url": "https://www.cedarhouse.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "st-stithians-college",
+    "name": "St Stithians College",
+    "type": "private",
+    "province": "Gauteng",
+    "suburb": "Lyme Park",
+    "address": "40 Peter Place, Lyme Park, Sandton, 2021",
+    "latitude": -26.0371,
+    "longitude": 28.0194,
+    "website_url": "https://www.stithian.com",
+    "logo_url": null,
+    "description": "Methodist co-educational independent school offering separate boys' and girls' colleges.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 21000,
+    "fee_monthly_max": 26000,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "IEB",
+    "extracurriculars": ["Rugby", "Hockey", "Cricket", "Choir"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-02-28",
+        "application_fee": 800,
+        "application_url": "https://www.stithian.com/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-04", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "kingsmead-college",
+    "name": "Kingsmead College",
+    "type": "private",
+    "province": "Gauteng",
+    "suburb": "Melrose",
+    "address": "39 Tottenham Avenue, Melrose, Johannesburg, 2196",
+    "latitude": -26.1361,
+    "longitude": 28.0651,
+    "website_url": "https://www.kingsmead.co.za",
+    "logo_url": null,
+    "description": "Independent day school for girls from Grade 000 to Grade 12, known for its academic results.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 18000,
+    "fee_monthly_max": 23000,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "IEB",
+    "extracurriculars": ["Hockey", "Netball", "Choir", "Drama"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-02-28",
+        "application_fee": 600,
+        "application_url": "https://www.kingsmead.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-18", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "st-andrews-school-for-girls",
+    "name": "St Andrew's School for Girls",
+    "type": "private",
+    "province": "Gauteng",
+    "suburb": "Bedfordview",
+    "address": "60 Sherwell Street, Bedfordview, 2007",
+    "latitude": -26.1821,
+    "longitude": 28.1407,
+    "website_url": "https://www.standrews.co.za",
+    "logo_url": null,
+    "description": "Anglican independent girls' school founded in 1902, offering a strong academic programme.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 18000,
+    "fee_monthly_max": 24000,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "IEB",
+    "extracurriculars": ["Hockey", "Netball", "Rowing", "Music"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-02-28",
+        "application_fee": 600,
+        "application_url": "https://www.standrews.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-03", "start_time": "09:00", "end_time": "12:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "hoerskool-menlo-park",
+    "name": "Hoërskool Menlopark",
+    "type": "model_c",
+    "province": "Gauteng",
+    "suburb": "Menlo Park",
+    "address": "Dely Road, Menlo Park, Pretoria, 0081",
+    "latitude": -25.7804,
+    "longitude": 28.2685,
+    "website_url": "https://www.menlopark.co.za",
+    "logo_url": null,
+    "description": "Top Afrikaans-medium co-educational public high school in Pretoria.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3000,
+    "fee_monthly_max": 3400,
+    "language": "Afrikaans",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Netball", "Hockey", "Music"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 250,
+        "application_url": "https://www.menlopark.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "hoerskool-waterkloof",
+    "name": "Hoërskool Waterkloof",
+    "type": "model_c",
+    "province": "Gauteng",
+    "suburb": "Waterkloof",
+    "address": "225 Marais Street, Waterkloof, Pretoria, 0145",
+    "latitude": -25.7974,
+    "longitude": 28.2476,
+    "website_url": "https://www.waterkloof.co.za",
+    "logo_url": null,
+    "description": "Prestigious dual-medium public high school with exceptional sporting and academic track record.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3300,
+    "fee_monthly_max": 3700,
+    "language": "Afrikaans / English",
+    "boarding": true,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Hockey", "Athletics", "Choir"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 300,
+        "application_url": "https://www.waterkloof.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "groote-schuur-high-school",
+    "name": "Groote Schuur High School",
+    "type": "model_c",
+    "province": "Western Cape",
+    "suburb": "Newlands",
+    "address": "Palmyra Road, Newlands, Cape Town, 7700",
+    "latitude": -33.9732,
+    "longitude": 18.4619,
+    "website_url": "https://www.gshs.co.za",
+    "logo_url": null,
+    "description": "Co-educational public high school with a long tradition of academic excellence.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 2900,
+    "fee_monthly_max": 3200,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Hockey", "Choir", "Art"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 200,
+        "application_url": "https://www.gshs.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "claremont-high-school",
+    "name": "Claremont High School",
+    "type": "model_c",
+    "province": "Western Cape",
+    "suburb": "Claremont",
+    "address": "Norwich Drive, Claremont, Cape Town, 7708",
+    "latitude": -33.9823,
+    "longitude": 18.4612,
+    "website_url": "https://www.claremonths.co.za",
+    "logo_url": null,
+    "description": "Co-educational public high school serving the Southern Suburbs.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 2600,
+    "fee_monthly_max": 2900,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Netball", "Hockey"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 200,
+        "application_url": "https://www.claremonths.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "fairmont-high-school",
+    "name": "Fairmont High School",
+    "type": "model_c",
+    "province": "Western Cape",
+    "suburb": "Durbanville",
+    "address": "Proteus Street, Durbanville, Cape Town, 7550",
+    "latitude": -33.8316,
+    "longitude": 18.6469,
+    "website_url": "https://www.fairmont.co.za",
+    "logo_url": null,
+    "description": "Co-educational public high school serving Durbanville and surrounds.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 2800,
+    "fee_monthly_max": 3100,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Hockey", "Cricket"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 200,
+        "application_url": "https://www.fairmont.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "milnerton-high-school",
+    "name": "Milnerton High School",
+    "type": "model_c",
+    "province": "Western Cape",
+    "suburb": "Milnerton",
+    "address": "Loxton Road, Milnerton, Cape Town, 7441",
+    "latitude": -33.8718,
+    "longitude": 18.5089,
+    "website_url": "https://www.milnertonhigh.co.za",
+    "logo_url": null,
+    "description": "Co-educational public high school on Cape Town's West Coast.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 2400,
+    "fee_monthly_max": 2700,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Cricket", "Surf lifesaving", "Drama"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 150,
+        "application_url": "https://www.milnertonhigh.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "sea-point-high-school",
+    "name": "Sea Point High School",
+    "type": "public",
+    "province": "Western Cape",
+    "suburb": "Sea Point",
+    "address": "1 Alfred Street, Sea Point, Cape Town, 8005",
+    "latitude": -33.9229,
+    "longitude": 18.3876,
+    "website_url": "https://www.spaok.co.za",
+    "logo_url": null,
+    "description": "Co-educational public high school serving the Atlantic Seaboard.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 2000,
+    "fee_monthly_max": 2300,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Soccer", "Basketball", "Drama"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 100,
+        "application_url": "https://www.spaok.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "fish-hoek-high-school",
+    "name": "Fish Hoek High School",
+    "type": "public",
+    "province": "Western Cape",
+    "suburb": "Fish Hoek",
+    "address": "Recreation Road, Fish Hoek, 7975",
+    "latitude": -34.1318,
+    "longitude": 18.4325,
+    "website_url": "https://www.fishhoekhigh.co.za",
+    "logo_url": null,
+    "description": "Co-educational public high school in the Far South of Cape Town.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 1900,
+    "fee_monthly_max": 2200,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Netball", "Lifesaving"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 100,
+        "application_url": "https://www.fishhoekhigh.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "plumstead-high-school",
+    "name": "Plumstead High School",
+    "type": "public",
+    "province": "Western Cape",
+    "suburb": "Plumstead",
+    "address": "Victoria Road, Plumstead, Cape Town, 7800",
+    "latitude": -34.0145,
+    "longitude": 18.4738,
+    "website_url": "https://www.plumsteadhigh.co.za",
+    "logo_url": null,
+    "description": "Co-educational public high school in Cape Town's Southern Suburbs.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 2000,
+    "fee_monthly_max": 2300,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Cricket", "Chess", "Debating"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 100,
+        "application_url": "https://www.plumsteadhigh.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "wynberg-boys-high-school",
+    "name": "Wynberg Boys' High School",
+    "type": "model_c",
+    "province": "Western Cape",
+    "suburb": "Wynberg",
+    "address": "Aliwal Road, Wynberg, Cape Town, 7800",
+    "latitude": -34.0032,
+    "longitude": 18.4686,
+    "website_url": "https://www.wbhs.org.za",
+    "logo_url": null,
+    "description": "Historic public boys' school (est. 1841) with strong academic and sporting heritage.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3000,
+    "fee_monthly_max": 3300,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Cricket", "Hockey"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 250,
+        "application_url": "https://www.wbhs.org.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "wynberg-girls-high-school",
+    "name": "Wynberg Girls' High School",
+    "type": "model_c",
+    "province": "Western Cape",
+    "suburb": "Wynberg",
+    "address": "Kenilworth Road, Wynberg, Cape Town, 7800",
+    "latitude": -34.0042,
+    "longitude": 18.4698,
+    "website_url": "https://www.wghs.co.za",
+    "logo_url": null,
+    "description": "Historic public girls' school founded in 1884.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3000,
+    "fee_monthly_max": 3300,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Hockey", "Netball", "Choir"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 250,
+        "application_url": "https://www.wghs.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "parktown-girls-high-school",
+    "name": "Parktown High School for Girls",
+    "type": "model_c",
+    "province": "Gauteng",
+    "suburb": "Parktown",
+    "address": "12 Wellington Road, Parktown, Johannesburg, 2193",
+    "latitude": -26.1812,
+    "longitude": 28.0363,
+    "website_url": "https://www.parktowngirls.co.za",
+    "logo_url": null,
+    "description": "Leading public girls' high school founded in 1893.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3100,
+    "fee_monthly_max": 3400,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Hockey", "Netball", "Choir"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 250,
+        "application_url": "https://www.parktowngirls.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "sandringham-high-school",
+    "name": "Sandringham High School",
+    "type": "model_c",
+    "province": "Gauteng",
+    "suburb": "Sandringham",
+    "address": "George Avenue, Sandringham, Johannesburg, 2192",
+    "latitude": -26.1301,
+    "longitude": 28.1082,
+    "website_url": "https://www.sandringhamhigh.co.za",
+    "logo_url": null,
+    "description": "Co-educational public high school with a strong academic track record.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 2700,
+    "fee_monthly_max": 3000,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Cricket", "Debating", "Drama"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 200,
+        "application_url": "https://www.sandringhamhigh.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "redhill-school",
+    "name": "Redhill School",
+    "type": "private",
+    "province": "Gauteng",
+    "suburb": "Morningside",
+    "address": "Summit Road, Morningside, Sandton, 2196",
+    "latitude": -26.0694,
+    "longitude": 28.0591,
+    "website_url": "https://www.redhill.co.za",
+    "logo_url": null,
+    "description": "Co-ed independent school offering a progressive academic programme from Grade 000 to Matric.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 17000,
+    "fee_monthly_max": 22000,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "IEB",
+    "extracurriculars": ["Hockey", "Drama", "Debating", "Art"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-02-28",
+        "application_fee": 600,
+        "application_url": "https://www.redhill.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "dainfern-college",
+    "name": "Dainfern College",
+    "type": "private",
+    "province": "Gauteng",
+    "suburb": "Dainfern",
+    "address": "Broadacres Drive, Dainfern, Johannesburg, 2055",
+    "latitude": -25.9938,
+    "longitude": 28.0096,
+    "website_url": "https://www.dainferncollege.co.za",
+    "logo_url": null,
+    "description": "Co-ed independent school offering an IEB curriculum on a large campus north of Johannesburg.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 14000,
+    "fee_monthly_max": 18000,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "IEB",
+    "extracurriculars": ["Rugby", "Hockey", "Horse riding", "Music"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-03-31",
+        "application_fee": 500,
+        "application_url": "https://www.dainferncollege.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "crawford-international-sandton",
+    "name": "Crawford International Sandton",
+    "type": "private",
+    "province": "Gauteng",
+    "suburb": "Benmore",
+    "address": "15 Benmore Road, Sandton, 2196",
+    "latitude": -26.1005,
+    "longitude": 28.0512,
+    "website_url": "https://www.crawfordinternational.co.za/sandton",
+    "logo_url": null,
+    "description": "Globally-focused independent school offering IEB and international programmes.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 12000,
+    "fee_monthly_max": 16000,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "IEB / Cambridge",
+    "extracurriculars": ["Chess", "Robotics", "Swimming"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-08-01",
+        "close_date": "2026-03-31",
+        "application_fee": 500,
+        "application_url": "https://www.crawfordinternational.co.za/sandton/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "saheti-school",
+    "name": "SAHETI School",
+    "type": "private",
+    "province": "Gauteng",
+    "suburb": "Bedfordview",
+    "address": "1 Saheti Drive, Senderwood, 2007",
+    "latitude": -26.1925,
+    "longitude": 28.1476,
+    "website_url": "https://www.saheti.co.za",
+    "logo_url": null,
+    "description": "Hellenic-heritage independent school offering a strong academic and cultural programme.",
+    "grades_from": "Grade R",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 11000,
+    "fee_monthly_max": 14000,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "IEB",
+    "extracurriculars": ["Greek language", "Rugby", "Water polo", "Choir"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-02-28",
+        "application_fee": 500,
+        "application_url": "https://www.saheti.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "st-davids-marist-inanda",
+    "name": "St David's Marist Inanda",
+    "type": "private",
+    "province": "Gauteng",
+    "suburb": "Inanda",
+    "address": "Rivonia Road, Inanda, Sandton, 2196",
+    "latitude": -26.1113,
+    "longitude": 28.0425,
+    "website_url": "https://www.stdavids.co.za",
+    "logo_url": null,
+    "description": "Catholic Marist independent boys' school offering Grade 000 to 12.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 15000,
+    "fee_monthly_max": 20000,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "IEB",
+    "extracurriculars": ["Rugby", "Cricket", "Music", "Drama"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-02-28",
+        "application_fee": 600,
+        "application_url": "https://www.stdavids.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "brescia-house-school",
+    "name": "Brescia House School",
+    "type": "private",
+    "province": "Gauteng",
+    "suburb": "Bryanston",
+    "address": "14 Sloane Street, Bryanston, Sandton, 2191",
+    "latitude": -26.0552,
+    "longitude": 28.0211,
+    "website_url": "https://www.brescia.co.za",
+    "logo_url": null,
+    "description": "Catholic independent girls' school offering Grade 000 to Matric.",
+    "grades_from": "Grade 000",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 14000,
+    "fee_monthly_max": 18000,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "IEB",
+    "extracurriculars": ["Hockey", "Netball", "Music", "Debating"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2025-07-01",
+        "close_date": "2026-02-28",
+        "application_fee": 500,
+        "application_url": "https://www.brescia.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "hoerskool-monument",
+    "name": "Hoërskool Monument",
+    "type": "model_c",
+    "province": "Gauteng",
+    "suburb": "Krugersdorp",
+    "address": "Michelangelo Street, Krugersdorp, 1739",
+    "latitude": -26.0948,
+    "longitude": 27.7641,
+    "website_url": "https://www.monument.co.za",
+    "logo_url": null,
+    "description": "Leading Afrikaans public high school with strong sporting traditions.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 2500,
+    "fee_monthly_max": 2900,
+    "language": "Afrikaans",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Netball", "Athletics"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 200,
+        "application_url": "https://www.monument.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "rhodes-high-school",
+    "name": "Rhodes High School",
+    "type": "public",
+    "province": "Western Cape",
+    "suburb": "Mowbray",
+    "address": "Tennant Road, Mowbray, Cape Town, 7700",
+    "latitude": -33.9516,
+    "longitude": 18.4768,
+    "website_url": "https://www.rhodeshigh.co.za",
+    "logo_url": null,
+    "description": "Co-educational public high school serving Cape Town's Southern Suburbs.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 1800,
+    "fee_monthly_max": 2100,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Soccer", "Netball", "Debating"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 100,
+        "application_url": "https://www.rhodeshigh.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "livingstone-high-school",
+    "name": "Livingstone High School",
+    "type": "public",
+    "province": "Western Cape",
+    "suburb": "Claremont",
+    "address": "Imam Haron Road, Claremont, Cape Town, 7708",
+    "latitude": -33.9869,
+    "longitude": 18.4651,
+    "website_url": "https://www.livhigh.co.za",
+    "logo_url": null,
+    "description": "Historic co-educational public high school with deep roots in community activism.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 1900,
+    "fee_monthly_max": 2200,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Chess", "Debating", "Music"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 100,
+        "application_url": "https://www.livhigh.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "spine-road-high-school",
+    "name": "Spine Road High School",
+    "type": "public",
+    "province": "Western Cape",
+    "suburb": "Mitchells Plain",
+    "address": "Spine Road, Rocklands, Mitchells Plain, 7785",
+    "latitude": -34.0431,
+    "longitude": 18.6146,
+    "website_url": "https://www.spineroadhigh.co.za",
+    "logo_url": null,
+    "description": "Co-educational public high school serving Mitchells Plain.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 400,
+    "fee_monthly_max": 600,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Soccer", "Netball", "Debate"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 50,
+        "application_url": "https://www.spineroadhigh.co.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "oscar-mpetha-high-school",
+    "name": "Oscar Mpetha High School",
+    "type": "public",
+    "province": "Western Cape",
+    "suburb": "Nyanga",
+    "address": "Sithandatu Avenue, Nyanga, Cape Town, 7750",
+    "latitude": -33.9916,
+    "longitude": 18.5783,
+    "website_url": "https://wcedonline.westerncape.gov.za/",
+    "logo_url": null,
+    "description": "Co-educational public high school in Nyanga.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 0,
+    "fee_monthly_max": 200,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Soccer", "Choir"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 0,
+        "application_url": "https://wcedonline.westerncape.gov.za/",
+        "notes": "No-fee school."
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "soweto-soshanguve-secondary-school",
+    "name": "Meadowlands Secondary School",
+    "type": "public",
+    "province": "Gauteng",
+    "suburb": "Meadowlands",
+    "address": "Meadowlands Zone 1, Soweto, 1852",
+    "latitude": -26.2416,
+    "longitude": 27.8907,
+    "website_url": "https://www.education.gov.za/",
+    "logo_url": null,
+    "description": "Co-educational public high school in Meadowlands, Soweto.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 0,
+    "fee_monthly_max": 100,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Soccer", "Choir", "Debate"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 0,
+        "application_url": "https://www.gdeadmissions.gov.za/",
+        "notes": "No-fee school; apply via GDE online."
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "mondeor-high-school",
+    "name": "Mondeor High School",
+    "type": "public",
+    "province": "Gauteng",
+    "suburb": "Mondeor",
+    "address": "Columbine Avenue, Mondeor, Johannesburg, 2091",
+    "latitude": -26.2808,
+    "longitude": 28.0072,
+    "website_url": "https://www.mondeor.co.za",
+    "logo_url": null,
+    "description": "Co-educational public high school in southern Johannesburg.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 900,
+    "fee_monthly_max": 1200,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Netball", "Drama"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 100,
+        "application_url": "https://www.gdeadmissions.gov.za/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "alexandra-high-school",
+    "name": "Alexandra High School",
+    "type": "public",
+    "province": "Gauteng",
+    "suburb": "Alexandra",
+    "address": "13th Avenue, Alexandra, Johannesburg, 2090",
+    "latitude": -26.1067,
+    "longitude": 28.1076,
+    "website_url": "https://www.education.gov.za/",
+    "logo_url": null,
+    "description": "Co-educational public high school serving Alexandra township.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 0,
+    "fee_monthly_max": 150,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Soccer", "Netball", "Choir"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 0,
+        "application_url": "https://www.gdeadmissions.gov.za/",
+        "notes": "No-fee school."
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "khayelitsha-esangweni-secondary",
+    "name": "Esangweni Secondary School",
+    "type": "public",
+    "province": "Western Cape",
+    "suburb": "Khayelitsha",
+    "address": "Ntlazane Road, Khayelitsha, Cape Town, 7784",
+    "latitude": -34.0389,
+    "longitude": 18.6803,
+    "website_url": "https://wcedonline.westerncape.gov.za/",
+    "logo_url": null,
+    "description": "Co-educational public high school in Khayelitsha.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 0,
+    "fee_monthly_max": 100,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Soccer", "Debate"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 0,
+        "application_url": "https://wcedonline.westerncape.gov.za/",
+        "notes": "No-fee school."
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "ivory-park-secondary-school",
+    "name": "Ivory Park Secondary School",
+    "type": "public",
+    "province": "Gauteng",
+    "suburb": "Ivory Park",
+    "address": "Ivory Park, Midrand, 1685",
+    "latitude": -26.0014,
+    "longitude": 28.1594,
+    "website_url": "https://www.education.gov.za/",
+    "logo_url": null,
+    "description": "Co-educational public high school in Midrand.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 0,
+    "fee_monthly_max": 150,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Soccer", "Netball"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 0,
+        "application_url": "https://www.gdeadmissions.gov.za/",
+        "notes": "No-fee school."
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "bryanston-high-school",
+    "name": "Bryanston High School",
+    "type": "model_c",
+    "province": "Gauteng",
+    "suburb": "Bryanston",
+    "address": "Bryanston Drive, Bryanston, Sandton, 2191",
+    "latitude": -26.0526,
+    "longitude": 28.0275,
+    "website_url": "https://www.bhs.co.za",
+    "logo_url": null,
+    "description": "Large co-educational public high school with a diverse student body.",
+    "grades_from": "Grade 8",
+    "grades_to": "Grade 12",
+    "fee_monthly_min": 3000,
+    "fee_monthly_max": 3400,
+    "language": "English",
+    "boarding": false,
+    "curriculum": "NSC",
+    "extracurriculars": ["Rugby", "Netball", "Cricket", "Debating"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Grade 8",
+        "open_date": "2026-03-01",
+        "close_date": "2026-05-31",
+        "application_fee": 250,
+        "application_url": "https://www.bhs.co.za/admissions/",
+        "notes": ""
+      }
+    ],
+    "open_days": []
+  },
+  {
+    "slug": "university-of-cape-town",
+    "name": "University of Cape Town",
+    "type": "university",
+    "province": "Western Cape",
+    "suburb": "Rondebosch",
+    "address": "Upper Campus, Rondebosch, Cape Town, 7701",
+    "latitude": -33.9577,
+    "longitude": 18.4612,
+    "website_url": "https://www.uct.ac.za",
+    "logo_url": null,
+    "description": "Founded in 1829, UCT is Africa's leading university and one of the world's top-ranked institutions.",
+    "grades_from": "Undergraduate",
+    "grades_to": "Postgraduate",
+    "fee_monthly_min": null,
+    "fee_monthly_max": null,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "University",
+    "extracurriculars": ["Rowing", "Debating", "Music", "Entrepreneurship"],
+    "is_featured": true,
+    "deadlines": [
+      {
+        "grade_group": "Undergraduate",
+        "open_date": "2026-04-01",
+        "close_date": "2026-07-31",
+        "application_fee": 100,
+        "application_url": "https://apply.uct.ac.za",
+        "notes": "Apply online via the UCT applicant self-service portal."
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-04-27", "start_time": "08:00", "end_time": "16:00", "location": "Upper Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "university-of-the-witwatersrand",
+    "name": "University of the Witwatersrand",
+    "type": "university",
+    "province": "Gauteng",
+    "suburb": "Braamfontein",
+    "address": "1 Jan Smuts Avenue, Braamfontein, Johannesburg, 2000",
+    "latitude": -26.1929,
+    "longitude": 28.0305,
+    "website_url": "https://www.wits.ac.za",
+    "logo_url": null,
+    "description": "Wits is a leading research-intensive university based in Johannesburg, founded in 1922.",
+    "grades_from": "Undergraduate",
+    "grades_to": "Postgraduate",
+    "fee_monthly_min": null,
+    "fee_monthly_max": null,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "University",
+    "extracurriculars": ["Debating", "Research", "Music"],
+    "is_featured": true,
+    "deadlines": [
+      {
+        "grade_group": "Undergraduate",
+        "open_date": "2026-04-01",
+        "close_date": "2026-07-31",
+        "application_fee": 200,
+        "application_url": "https://www.wits.ac.za/applications/",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-03", "start_time": "09:00", "end_time": "15:00", "location": "East Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "university-of-pretoria",
+    "name": "University of Pretoria",
+    "type": "university",
+    "province": "Gauteng",
+    "suburb": "Hatfield",
+    "address": "Lynnwood Road, Hatfield, Pretoria, 0028",
+    "latitude": -25.7545,
+    "longitude": 28.2314,
+    "website_url": "https://www.up.ac.za",
+    "logo_url": null,
+    "description": "A leading research university with nine faculties across multiple campuses in Pretoria.",
+    "grades_from": "Undergraduate",
+    "grades_to": "Postgraduate",
+    "fee_monthly_min": null,
+    "fee_monthly_max": null,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "University",
+    "extracurriculars": ["Sport", "Residences", "Cultural societies"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Undergraduate",
+        "open_date": "2026-04-01",
+        "close_date": "2026-06-30",
+        "application_fee": 300,
+        "application_url": "https://www.up.ac.za/apply",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-10", "start_time": "08:30", "end_time": "15:00", "location": "Hatfield Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "stellenbosch-university",
+    "name": "Stellenbosch University",
+    "type": "university",
+    "province": "Western Cape",
+    "suburb": "Stellenbosch",
+    "address": "Ryneveld Street, Stellenbosch, 7600",
+    "latitude": -33.9325,
+    "longitude": 18.8651,
+    "website_url": "https://www.sun.ac.za",
+    "logo_url": null,
+    "description": "One of South Africa's top universities, based in the picturesque Cape Winelands town of Stellenbosch.",
+    "grades_from": "Undergraduate",
+    "grades_to": "Postgraduate",
+    "fee_monthly_min": null,
+    "fee_monthly_max": null,
+    "language": "Afrikaans / English",
+    "boarding": true,
+    "curriculum": "University",
+    "extracurriculars": ["Rugby", "Debating", "Residences"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Undergraduate",
+        "open_date": "2026-04-01",
+        "close_date": "2026-07-31",
+        "application_fee": 100,
+        "application_url": "https://www.sun.ac.za/english/maties/apply",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-04", "start_time": "09:00", "end_time": "15:00", "location": "Main Campus", "is_virtual": false }
+    ]
+  },
+  {
+    "slug": "university-of-johannesburg",
+    "name": "University of Johannesburg",
+    "type": "university",
+    "province": "Gauteng",
+    "suburb": "Auckland Park",
+    "address": "Kingsway Avenue, Auckland Park, Johannesburg, 2092",
+    "latitude": -26.1832,
+    "longitude": 27.9956,
+    "website_url": "https://www.uj.ac.za",
+    "logo_url": null,
+    "description": "A large, diverse comprehensive university formed in 2005 with four campuses in Johannesburg.",
+    "grades_from": "Undergraduate",
+    "grades_to": "Postgraduate",
+    "fee_monthly_min": null,
+    "fee_monthly_max": null,
+    "language": "English",
+    "boarding": true,
+    "curriculum": "University",
+    "extracurriculars": ["Sport", "Engineering research"],
+    "is_featured": false,
+    "deadlines": [
+      {
+        "grade_group": "Undergraduate",
+        "open_date": "2026-04-01",
+        "close_date": "2026-10-31",
+        "application_fee": 200,
+        "application_url": "https://www.uj.ac.za/apply",
+        "notes": ""
+      }
+    ],
+    "open_days": [
+      { "event_date": "2026-05-11", "start_time": "09:00", "end_time": "15:00", "location": "Auckland Park Campus", "is_virtual": false }
+    ]
+  }
+]
