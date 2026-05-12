@@ -1,6 +1,28 @@
 # SchoolFinder SA — Pre-Launch Checklist
 
-Status as of **27 April 2026**. This is the running list of what's done, what's left in the code, and what you (the operator) need to do externally before going live.
+Status as of **12 May 2026**. This is the running list of what's done, what's left in the code, and what you (the operator) need to do externally before going live.
+
+---
+
+## 🚦 Where we are right now (12 May 2026)
+
+- ✅ Full application code committed and pushed to GitHub (`King-Wuda/School-Application-App`)
+- ✅ Supabase project created — URL, `anon` (publishable) key, and `service_role` (secret) key are in local `.env.local`
+- ✅ Database schema migration run in Supabase SQL Editor — all tables, indexes, RLS policies, and the new-user trigger are live
+- ✅ Database seeded — **59 schools** inserted via `npm run seed`
+- ✅ Admin password set in `.env.local`
+- ✅ Local dev server verified — homepage, search, school detail pages all render live Supabase data; SEO titles working
+- ⚠️ The first `service_role` key was shared in a chat session and should be rotated; the current `.env.local` value may already be the rotated one — confirm before deploying
+
+### → Next actions, in order
+1. **Configure auth in Supabase** — Authentication → Providers: enable Email (turn on "Confirm email"), set up Google OAuth (client ID + secret, redirect URL). Login does nothing until this is done.
+2. **Deploy to Vercel** — import the GitHub repo, add the env vars (see section 4 below), set `NEXT_PUBLIC_SITE_URL` to the real domain.
+3. **Buy a `.co.za` domain** and point DNS at Vercel.
+4. **Set up Resend** for deadline emails, then deploy the edge function and schedule its cron.
+5. **Privacy policy + terms** (POPIA — required before public launch).
+6. **Pre-launch QA pass** (section 10 below).
+
+Note: when running the seed script locally, the env file must be passed explicitly — `DOTENV_CONFIG_PATH=.env.local npm run seed` — because the script loads `dotenv` directly rather than Next.js's env loader.
 
 ---
 
@@ -28,7 +50,7 @@ Status as of **27 April 2026**. This is the running list of what's done, what's 
 - [x] Seed script (`npm run seed`) — idempotent, pushes JSON to Supabase
 
 ### Data
-- [x] 55 real SA schools seeded (15+ public, 15+ Model C, 15+ private, 5 universities)
+- [x] 59 real SA schools seeded into Supabase (15+ public, 15+ Model C, 15+ private, 5 universities)
 
 ### SEO / metadata
 - [x] Dynamic page titles with name + suburb + fees
@@ -71,14 +93,14 @@ These are not blockers for launch — they're nice-to-haves you can ship in week
 These cannot be done from inside the code — they need accounts, credentials, and domain.
 
 ### 1. Supabase project — required
-- [ ] Create a Supabase project at <https://supabase.com>
-- [ ] Copy the URL and `anon` key from **Project Settings → API**
-- [ ] Copy the `service_role` key (keep it secret — server-only)
-- [ ] In **SQL Editor**, paste and run [`supabase/migrations/0001_init.sql`](supabase/migrations/0001_init.sql)
+- [x] Create a Supabase project at <https://supabase.com>
+- [x] Copy the URL and `anon` key from **Project Settings → API** → in `.env.local`
+- [x] Copy the `service_role` key (keep it secret — server-only) → in `.env.local` *(rotate if the original was ever shared)*
+- [x] In **SQL Editor**, paste and run [`supabase/migrations/0001_init.sql`](supabase/migrations/0001_init.sql)
 - [ ] In **Authentication → Providers**:
   - Enable **Email** (turn on "Confirm email" for production)
   - Enable **Google**, paste your OAuth client ID + secret, add `<your-domain>/auth/callback` to redirect URLs
-- [ ] Run `npm run seed` from your machine to populate the 55 schools
+- [x] Run `npm run seed` to populate the schools — **59 inserted**
 
 ### 2. Domain — required
 - [ ] Buy a `.co.za` domain (recommend `schoolfinder.co.za` or similar — South Africans trust `.co.za` over `.com`)
@@ -91,7 +113,7 @@ These cannot be done from inside the code — they need accounts, credentials, a
 - [ ] Configure `noreply@<your-domain>` as the sending address
 
 ### 4. Vercel deployment — required
-- [ ] Push this repo to GitHub
+- [x] Push this repo to GitHub — `King-Wuda/School-Application-App`
 - [ ] Import the repo at <https://vercel.com/new>
 - [ ] Add these env vars in **Project Settings → Environment Variables**:
   ```
@@ -175,16 +197,17 @@ These are about staying safe and learning fast, not building.
 
 ## Estimated time to launch from here
 
-| Phase | Effort |
-| ----- | ------ |
-| Supabase setup + migration + seed | 1 hour |
-| Domain + Vercel deploy | 1 hour |
-| Resend + domain DNS verify | 1 hour (mostly waiting) |
-| Edge function deploy + cron | 30 min |
-| Analytics wiring | 30 min |
-| Privacy policy + terms | 2 hours |
-| Pre-launch QA | 2 hours |
-| **Total** | **~8 hours over 1–2 days** |
+| Phase | Effort | Status |
+| ----- | ------ | ------ |
+| Supabase setup + migration + seed | 1 hour | ✅ done |
+| Auth providers (Email + Google) in Supabase | 30 min | ⬜ |
+| Domain + Vercel deploy | 1 hour | ⬜ |
+| Resend + domain DNS verify | 1 hour (mostly waiting) | ⬜ |
+| Edge function deploy + cron | 30 min | ⬜ |
+| Analytics wiring | 30 min | ⬜ |
+| Privacy policy + terms | 2 hours | ⬜ |
+| Pre-launch QA | 2 hours | ⬜ |
+| **Remaining** | **~7 hours over 1–2 days** | |
 
 Optional add-ons (sitemap, province pages, FAQ): another **4–6 hours**.
 
