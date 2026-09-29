@@ -24,6 +24,20 @@ export function formatFeeRange(min: number | null, max: number | null): string {
   return `Up to R${fmt(max!)}/month`;
 }
 
+/** Fee label for a school, falling back to the official no-fee status. */
+export function formatSchoolFees(school: {
+  type: string;
+  fee_monthly_min: number | null;
+  fee_monthly_max: number | null;
+  no_fee_school?: boolean | null;
+}): string {
+  if (school.type === "university") return "See website";
+  if (school.fee_monthly_min == null && school.fee_monthly_max == null && school.no_fee_school) {
+    return "No-fee school";
+  }
+  return formatFeeRange(school.fee_monthly_min, school.fee_monthly_max);
+}
+
 export function formatGradeRange(from: string | null, to: string | null): string {
   if (!from && !to) return "Grades not listed";
   if (from && to) {
@@ -110,4 +124,15 @@ export function sanitiseLike(input: string): string {
     .replace(/\s+/g, " ")
     .trim()
     .slice(0, 80);
+}
+
+/**
+ * "Grade R" → 0, "Grade 8" → 8, anything else → null. Mirrors the
+ * grade_min / grade_max generated columns in the database.
+ */
+export function gradeNumber(grade: string | null | undefined): number | null {
+  if (!grade) return null;
+  if (/\bR\b/i.test(grade)) return 0;
+  const m = /\d+/.exec(grade);
+  return m ? Number(m[0]) : null;
 }

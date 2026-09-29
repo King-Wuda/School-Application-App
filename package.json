@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "seed": "tsx scripts/seed.ts",
+    "import:emis": "tsx scripts/import-emis.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -31,6 +32,7 @@
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.33",
     "postcss": "^8.4.47",
+    "read-excel-file": "^9.3.10",
     "tailwindcss": "^3.4.13",
     "tsx": "^4.19.1",
     "typescript": "^5.6.3"

@@ -24,6 +24,20 @@ Status as of **12 May 2026**. This is the running list of what's done, what's le
 
 Note: when running the seed script locally, the env file must be passed explicitly — `DOTENV_CONFIG_PATH=.env.local npm run seed` — because the script loads `dotenv` directly rather than Next.js's env loader.
 
+### Update — 29 September 2026: Western Cape directory + speed fixes
+
+**All Western Cape schools listed.** 1,927 primary, high, combined, intermediate, special-needs and skills schools from the official DBE Schools Masterlist (2025). Each school has its address, GPS location, phone, district, quintile, no-fee status and learner numbers. The 25 curated Western Cape schools are merged in and keep their fees, deadlines and descriptions. Search has a new **Level** filter (primary / high school / special needs), and the **Grade** filter now actually filters results (it was being ignored before). See README → *Data source* for how to add the next province.
+
+**Speed.** Three things were making clicks feel slow:
+1. The middleware checked the Supabase session (a network round-trip) before *every* page load. It now only runs on `/account`, `/auth` and `/login`, the only places that need it.
+2. Public data was read with a cookie-aware client, and that quietly made every page dynamic, so the hourly caching (ISR) on school pages never took effect. Public reads now use a cookie-free client and are cached across requests for an hour. Admin edits (and the new **Refresh site data** button) clear the cache straight away.
+3. Search had no indexes on suburb, address, fees or grades. `0002_directory_and_perf.sql` adds them. Also: the home page is now static, school pages load with one query instead of three, search returns only the columns the cards need, and the search page shows a loading skeleton straight away.
+
+**To deploy this:**
+1. Run `supabase/migrations/0002_directory_and_perf.sql` in the Supabase SQL Editor.
+2. `DOTENV_CONFIG_PATH=.env.local npm run seed`
+3. Deploy, then click **Refresh site data** in `/admin`.
+
 ---
 
 ## ✅ Already done (in this repo)

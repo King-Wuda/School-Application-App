@@ -4,6 +4,9 @@ import { SchoolCard } from "@/components/schools/SchoolCard";
 import { getFeaturedSchools, getStats } from "@/lib/data";
 import { CheckIcon, StarIcon } from "@/components/ui/Icon";
 
+// Static page, regenerated at most hourly (and immediately after admin edits).
+export const revalidate = 3600;
+
 export default async function HomePage() {
   const [featured, stats] = await Promise.all([
     getFeaturedSchools(6),

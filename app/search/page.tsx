@@ -4,7 +4,7 @@ import { SortSelect } from "@/components/search/SortSelect";
 import { Pagination } from "@/components/search/Pagination";
 import { ResultsGrid } from "@/components/search/ResultsGrid";
 import { listSchools } from "@/lib/data";
-import type { SchoolType } from "@/lib/types";
+import type { SchoolLevel, SchoolType } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Search schools",
@@ -12,7 +12,16 @@ export const metadata: Metadata = {
     "Search and filter every school and university in South Africa by province, type, grades and fees.",
 };
 
+// Rendered per request (it depends on the query string), but the underlying
+// database queries are cached — see lib/data.ts.
 export const dynamic = "force-dynamic";
+
+const LEVELS: SchoolLevel[] = ["primary", "high", "special_needs"];
+const LEVEL_LABELS: Record<SchoolLevel, string> = {
+  primary: "Primary",
+  high: "High school",
+  special_needs: "Special needs",
+};
 
 function parseQP(sp: { [key: string]: string | string[] | undefined }) {
   const get = (k: string) => {
@@ -23,6 +32,7 @@ function parseQP(sp: { [key: string]: string | string[] | undefined }) {
     q: get("q") || undefined,
     province: get("province") || undefined,
     type: (get("type") as SchoolType | undefined) || undefined,
+    level: LEVELS.find((l) => l === get("level")),
     grade: get("grade") || undefined,
     feeMin: parseNum(get("fee_min")),
     feeMax: parseNum(get("fee_max")),
@@ -48,6 +58,8 @@ export default async function SearchPage({
   const activeLabel = [
     parsed.province,
     parsed.type && typeLabel(parsed.type),
+    parsed.level && LEVEL_LABELS[parsed.level],
+    parsed.grade,
     parsed.q && `"${parsed.q}"`,
   ]
     .filter(Boolean)
@@ -77,6 +89,7 @@ export default async function SearchPage({
                   q: parsed.q,
                   province: parsed.province,
                   type: parsed.type,
+                  level: parsed.level,
                   grade: parsed.grade,
                   feeMin: parsed.feeMin != null ? String(parsed.feeMin) : "",
                   feeMax: parsed.feeMax != null ? String(parsed.feeMax) : "",

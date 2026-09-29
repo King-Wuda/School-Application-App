@@ -13,7 +13,7 @@ import {
   SCHOOL_TYPE_LABELS,
   type SchoolWithRelations,
 } from "@/lib/types";
-import { formatFeeRange, formatGradeRange, cn } from "@/lib/utils";
+import { formatSchoolFees, formatGradeRange, cn } from "@/lib/utils";
 
 interface Props {
   schools: SchoolWithRelations[];
@@ -114,10 +114,7 @@ function CompareTable({
     },
     {
       label: "Monthly fees",
-      render: (s) =>
-        s.type === "university"
-          ? "See website"
-          : formatFeeRange(s.fee_monthly_min, s.fee_monthly_max),
+      render: (s) => formatSchoolFees(s),
     },
     {
       label: "Grades",

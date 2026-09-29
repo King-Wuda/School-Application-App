@@ -6,11 +6,14 @@ import { PROVINCES } from "@/lib/types";
 import { Input, Select } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 
+const GRADES = ["Grade R", ...Array.from({ length: 12 }, (_, i) => `Grade ${i + 1}`)];
+
 interface Props {
   initial: {
     q?: string;
     province?: string;
     type?: string;
+    level?: string;
     grade?: string;
     feeMin?: string;
     feeMax?: string;
@@ -25,6 +28,7 @@ export function FilterSidebar({ initial }: Props) {
   const [q, setQ] = useState(initial.q ?? "");
   const [province, setProvince] = useState(initial.province ?? "");
   const [type, setType] = useState(initial.type ?? "");
+  const [level, setLevel] = useState(initial.level ?? "");
   const [grade, setGrade] = useState(initial.grade ?? "");
   const [feeMin, setFeeMin] = useState(initial.feeMin ?? "");
   const [feeMax, setFeeMax] = useState(initial.feeMax ?? "");
@@ -34,6 +38,7 @@ export function FilterSidebar({ initial }: Props) {
     set(sp, "q", q);
     set(sp, "province", province);
     set(sp, "type", type);
+    set(sp, "level", level);
     set(sp, "grade", grade);
     set(sp, "fee_min", feeMin);
     set(sp, "fee_max", feeMax);
@@ -45,6 +50,7 @@ export function FilterSidebar({ initial }: Props) {
     setQ("");
     setProvince("");
     setType("");
+    setLevel("");
     setGrade("");
     setFeeMin("");
     setFeeMax("");
@@ -86,13 +92,22 @@ export function FilterSidebar({ initial }: Props) {
           <option value="university">University</option>
         </Select>
       </Field>
+      <Field label="Level">
+        <Select value={level} onChange={(e) => setLevel(e.target.value)}>
+          <option value="">All levels</option>
+          <option value="primary">Primary school</option>
+          <option value="high">High school</option>
+          <option value="special_needs">Special needs</option>
+        </Select>
+      </Field>
       <Field label="Grade">
         <Select value={grade} onChange={(e) => setGrade(e.target.value)}>
           <option value="">Any grade</option>
-          <option value="Grade R">Grade R</option>
-          <option value="Grade 1">Grade 1</option>
-          <option value="Grade 8">Grade 8</option>
-          <option value="Grade 10">Grade 10</option>
+          {GRADES.map((g) => (
+            <option key={g} value={g}>
+              {g}
+            </option>
+          ))}
         </Select>
       </Field>
       <Field label="Monthly fees (ZAR)">

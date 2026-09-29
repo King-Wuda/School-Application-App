@@ -1,5 +1,25 @@
 export type SchoolType = "public" | "model_c" | "private" | "university";
 
+export type SchoolPhase =
+  | "primary"
+  | "secondary"
+  | "combined"
+  | "intermediate"
+  | "special_needs"
+  | "school_of_skills";
+
+/** "Level" filter on the search page. */
+export type SchoolLevel = "primary" | "high" | "special_needs";
+
+export const SCHOOL_PHASE_LABELS: Record<SchoolPhase, string> = {
+  primary: "Primary school",
+  secondary: "High school",
+  combined: "Combined (primary + high)",
+  intermediate: "Intermediate (Grade R–9)",
+  special_needs: "Special needs school",
+  school_of_skills: "School of skills",
+};
+
 export interface School {
   id: string;
   name: string;
@@ -23,6 +43,22 @@ export interface School {
   extracurriculars: string[] | null;
   is_featured: boolean;
   created_at: string;
+  // Official directory fields (DBE EMIS masterlist). Null for schools not yet imported.
+  emis_number?: number | null;
+  phase?: SchoolPhase | null;
+  special_needs?: boolean | null;
+  no_fee_school?: boolean | null;
+  quintile?: number | null;
+  learner_count?: number | null;
+  educator_count?: number | null;
+  town?: string | null;
+  district?: string | null;
+  phone?: string | null;
+  urban_rural?: string | null;
+  data_source?: string | null;
+  // Derived from grades_from / grades_to (Grade R = 0).
+  grade_min?: number | null;
+  grade_max?: number | null;
 }
 
 export interface Deadline {

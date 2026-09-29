@@ -1,10 +1,10 @@
 import Link from "next/link";
 import type { School } from "@/lib/types";
-import { SCHOOL_TYPE_BADGE_CLASSES, SCHOOL_TYPE_LABELS } from "@/lib/types";
+import { SCHOOL_PHASE_LABELS, SCHOOL_TYPE_BADGE_CLASSES, SCHOOL_TYPE_LABELS } from "@/lib/types";
 import { Badge } from "@/components/ui/Badge";
 import { SchoolAvatar } from "@/components/ui/SchoolAvatar";
 import { ShortlistButton } from "@/components/shortlist/ShortlistButton";
-import { formatFeeRange, formatGradeRange } from "@/lib/utils";
+import { formatGradeRange, formatSchoolFees } from "@/lib/utils";
 import { ExternalLinkIcon, MapPinIcon, StarIcon } from "@/components/ui/Icon";
 import { DistanceBadge } from "./DistanceBadge";
 
@@ -35,7 +35,9 @@ export function SchoolCard({ school, showFeatured = true }: Props) {
               <p className="mt-0.5 flex items-center gap-1 text-sm text-navy/60">
                 <MapPinIcon size={14} />
                 <span className="truncate">
-                  {[school.suburb, school.province].filter(Boolean).join(", ")}
+                  {[school.suburb, school.town !== school.suburb ? school.town : null, school.province]
+                    .filter(Boolean)
+                    .join(", ")}
                 </span>
               </p>
             </div>
@@ -48,6 +50,11 @@ export function SchoolCard({ school, showFeatured = true }: Props) {
             <Badge className={SCHOOL_TYPE_BADGE_CLASSES[school.type]}>
               {SCHOOL_TYPE_LABELS[school.type]}
             </Badge>
+            {school.phase && (
+              <Badge className="bg-navy/5 text-navy/70">
+                {SCHOOL_PHASE_LABELS[school.phase]}
+              </Badge>
+            )}
             {showFeatured && school.is_featured && (
               <Badge className="bg-amber/20 text-amber-700">
                 <StarIcon size={12} /> Featured
@@ -65,9 +72,7 @@ export function SchoolCard({ school, showFeatured = true }: Props) {
         <div>
           <dt className="text-xs uppercase tracking-wide text-navy/50">Fees</dt>
           <dd className="mt-0.5 font-medium text-navy">
-            {school.type === "university"
-              ? "See website"
-              : formatFeeRange(school.fee_monthly_min, school.fee_monthly_max)}
+            {formatSchoolFees(school)}
           </dd>
         </div>
         <div>

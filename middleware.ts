@@ -31,8 +31,9 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    // Skip admin routes (they use their own cookie-based auth), static assets, and API routes.
-    "/((?!admin|api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
-  ],
+  // Only routes that read the Supabase session on the server need the
+  // session-refresh round-trip. Every other page (home, search, school pages)
+  // is public and uses the browser client for auth, so running `getUser()`
+  // there just added a network call to Supabase before every navigation.
+  matcher: ["/account/:path*", "/auth/:path*", "/login"],
 };
