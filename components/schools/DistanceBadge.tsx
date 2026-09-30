@@ -15,7 +15,7 @@ export function DistanceBadge({ lat, lng }: Props) {
   if (lat == null || lng == null || !pos) return null;
   const km = distanceKm(pos.lat, pos.lng, lat, lng);
   return (
-    <Badge className="bg-cream-dark text-navy/70">
+    <Badge className="bg-navy text-cream">
       <MapPinIcon size={12} /> {formatDistance(km)}
     </Badge>
   );

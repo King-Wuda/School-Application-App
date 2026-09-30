@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, DM_Sans } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
@@ -22,14 +22,20 @@ const dmSans = DM_Sans({
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
+export const viewport: Viewport = {
+  themeColor: "#F9F7F4",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "SchoolFinder SA — Find & Compare Schools in South Africa",
+    default: "SchoolFinder SA — Find the right school for your child",
     template: "%s | SchoolFinder SA",
   },
   description:
-    "Search, compare and shortlist every school and university in South Africa. Free, fast and unbiased.",
+    "Free school search for South African parents. Compare fees, grades, distance and how to apply for every Western Cape school — public, independent and special needs.",
   openGraph: {
     type: "website",
     locale: "en_ZA",

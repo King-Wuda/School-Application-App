@@ -81,30 +81,37 @@ export default function LoginPage() {
         </div>
 
         <form onSubmit={handleEmail} className="space-y-3">
-          <Input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
-            required
-            autoComplete="email"
-          />
-          <Input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            minLength={6}
-            required
-            autoComplete={mode === "signin" ? "current-password" : "new-password"}
-          />
+          <label className="block">
+            <span className="mb-1.5 block text-sm font-medium text-navy">Email</span>
+            <Input
+              type="email"
+              inputMode="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              required
+              autoComplete="email"
+            />
+          </label>
+          <label className="block">
+            <span className="mb-1.5 block text-sm font-medium text-navy">Password</span>
+            <Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder={mode === "signin" ? "Your password" : "At least 6 characters"}
+              minLength={6}
+              required
+              autoComplete={mode === "signin" ? "current-password" : "new-password"}
+            />
+          </label>
           <Button type="submit" className="w-full" disabled={loading}>
             {mode === "signin" ? "Sign in" : "Create account"}
           </Button>
         </form>
 
         {msg && (
-          <p className="mt-4 rounded-lg bg-amber/10 p-3 text-sm text-amber-700">
+          <p role="alert" className="mt-4 rounded-lg bg-amber/10 p-3 text-sm text-amber-700">
             {msg}
           </p>
         )}

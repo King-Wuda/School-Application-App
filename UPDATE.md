@@ -24,6 +24,17 @@ Status as of **12 May 2026**. This is the running list of what's done, what's le
 
 Note: when running the seed script locally, the env file must be passed explicitly — `DOTENV_CONFIG_PATH=.env.local npm run seed` — because the script loads `dotenv` directly rather than Next.js's env loader.
 
+### Update — 30 September 2026: parent-first redesign
+
+- **Search:** "Schools near me" now ranks every matching school by distance, not just the current page. Location is only asked for when you tap the button. Filters apply as soon as you tap them. Active filters show as removable chips. On phones, filters open in a bottom sheet with a live "Show N schools" count. There's a no-fee filter and an area filter. Universities no longer show up in school results. When nothing matches, the page suggests which filter to loosen.
+- **School pages:** key facts (fees, grades, learners, learners per educator), Call / Directions / Website buttons (pinned to the bottom of the screen on phones), "How to apply" guidance for each province and school type (with a link to WCED/GDE online admissions), nearby schools with distances, and plain-English explanations of quintile and EMIS. Past deadlines no longer look like open ones.
+- **Home page:** level tabs plus one search box and a "Show schools near me" button, quick links by need (Grade 1, Grade 8, no fees, special needs), "Browse by area" with school counts, and a how-it-works section.
+- **New `/guide` page:** application timeline, where to apply, a documents checklist and an FAQ (no-fee schools, quintiles, Model C, fee exemptions, appeals).
+- **Compare / shortlist:** more rows (level, learners, learners per educator, distance, contact), the table fits phones, confirmation toasts when you save, and no more "empty shortlist" flash while the page loads.
+- **Bugs fixed:** a hydration error on search (number formatting differed between server and browser), a location prompt firing on every page load, "Grade 000" labels, an invalid `filled` DOM attribute, and horizontal scrolling on phones.
+- **SEO:** `sitemap.xml` (every school), `robots.txt`, a favicon, `School` and `FAQPage` structured data, and school titles that include the area.
+- The `0002` migration gains two indexes (coordinates, no-fee). If you already ran it, run it again — it's safe to re-run.
+
 ### Update — 29 September 2026: Western Cape directory + speed fixes
 
 **All Western Cape schools listed.** 1,927 primary, high, combined, intermediate, special-needs and skills schools from the official DBE Schools Masterlist (2025). Each school has its address, GPS location, phone, district, quintile, no-fee status and learner numbers. The 25 curated Western Cape schools are merged in and keep their fees, deadlines and descriptions. Search has a new **Level** filter (primary / high school / special needs), and the **Grade** filter now actually filters results (it was being ignored before). See README → *Data source* for how to add the next province.

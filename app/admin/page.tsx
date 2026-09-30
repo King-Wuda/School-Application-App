@@ -4,7 +4,7 @@ import { hasSupabaseEnv } from "@/lib/supabase/server";
 import { SCHOOL_TYPE_BADGE_CLASSES, SCHOOL_TYPE_LABELS } from "@/lib/types";
 import { Badge } from "@/components/ui/Badge";
 import { refreshPublicData } from "@/lib/admin-actions";
-import { sanitiseLike } from "@/lib/utils";
+import { formatNumber, sanitiseLike } from "@/lib/utils";
 
 const PAGE_LIMIT = 100;
 
@@ -68,7 +68,7 @@ export default async function AdminSchoolsPage({
         </form>
       </div>
       <p className="text-sm text-navy/60">
-        Showing {schools?.length ?? 0} of {(count ?? 0).toLocaleString("en-ZA")} schools
+        Showing {schools?.length ?? 0} of {formatNumber(count ?? 0)} schools
         {q ? ` matching “${q}”` : ""}. Featured first, then A–Z.
       </p>
       <div className="overflow-hidden rounded-xl border border-navy/10 bg-white">

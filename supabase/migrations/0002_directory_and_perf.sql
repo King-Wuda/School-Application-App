@@ -50,6 +50,10 @@ create index if not exists schools_province_type_idx on schools (province, type)
 create index if not exists schools_fee_min_idx on schools (fee_monthly_min);
 create index if not exists schools_fee_max_idx on schools (fee_monthly_max);
 
+-- "Schools near me": bounding-box lookup on coordinates.
+create index if not exists schools_lat_lng_idx on schools (latitude, longitude);
+create index if not exists schools_no_fee_idx on schools (no_fee_school) where no_fee_school = true;
+
 -- Grade / level filters.
 create index if not exists schools_grade_span_idx on schools (grade_min, grade_max);
 create index if not exists schools_special_needs_idx on schools (special_needs) where special_needs = true;

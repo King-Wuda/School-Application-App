@@ -27,34 +27,40 @@ export function Pagination({ page, pageSize, total }: Props) {
   const pages = pageNumbers(page, totalPages);
 
   return (
-    <nav className="mt-8 flex items-center justify-center gap-1" aria-label="Pagination">
-      <PageLink disabled={page <= 1} href={href(page - 1)}>
-        ← Prev
-      </PageLink>
-      {pages.map((p, i) =>
-        p === "…" ? (
-          <span key={`e-${i}`} className="px-2 text-navy/40">
-            …
-          </span>
-        ) : (
-          <Link
-            key={p}
-            href={href(p)}
-            aria-current={p === page ? "page" : undefined}
-            className={cn(
-              "inline-flex h-9 min-w-[36px] items-center justify-center rounded-md px-2 text-sm font-medium",
-              p === page
-                ? "bg-navy text-cream"
-                : "border border-navy/15 text-navy hover:bg-navy/5",
-            )}
-          >
-            {p}
-          </Link>
-        ),
-      )}
-      <PageLink disabled={page >= totalPages} href={href(page + 1)}>
-        Next →
-      </PageLink>
+    <nav className="mt-10 flex flex-col items-center gap-3" aria-label="Pagination">
+      <div className="flex w-full items-center justify-between gap-2 sm:w-auto sm:justify-center">
+        <PageLink disabled={page <= 1} href={href(page - 1)} label="Previous page">
+          ← Previous
+        </PageLink>
+        <div className="hidden items-center gap-1 sm:flex">
+          {pages.map((p, i) =>
+            p === "…" ? (
+              <span key={`e-${i}`} className="px-1.5 text-navy/40">
+                …
+              </span>
+            ) : (
+              <Link
+                key={p}
+                href={href(p)}
+                aria-current={p === page ? "page" : undefined}
+                aria-label={`Page ${p}`}
+                className={cn(
+                  "inline-flex h-10 min-w-[40px] items-center justify-center rounded-full px-2 text-sm font-medium transition-colors",
+                  p === page ? "bg-navy text-cream" : "text-navy hover:bg-navy/5",
+                )}
+              >
+                {p}
+              </Link>
+            ),
+          )}
+        </div>
+        <span className="text-sm text-navy/60 sm:hidden">
+          Page {page} of {totalPages}
+        </span>
+        <PageLink disabled={page >= totalPages} href={href(page + 1)} label="Next page">
+          Next →
+        </PageLink>
+      </div>
     </nav>
   );
 }
@@ -62,24 +68,24 @@ export function Pagination({ page, pageSize, total }: Props) {
 function PageLink({
   href,
   disabled,
+  label,
   children,
 }: {
   href: string;
   disabled?: boolean;
+  label: string;
   children: React.ReactNode;
 }) {
+  const cls = "inline-flex h-10 items-center rounded-full border px-4 text-sm font-medium";
   if (disabled) {
     return (
-      <span className="inline-flex h-9 items-center rounded-md border border-navy/10 px-3 text-sm text-navy/30">
+      <span aria-disabled className={cn(cls, "border-navy/10 text-navy/30")}>
         {children}
       </span>
     );
   }
   return (
-    <Link
-      href={href}
-      className="inline-flex h-9 items-center rounded-md border border-navy/15 px-3 text-sm font-medium text-navy hover:bg-navy/5"
-    >
+    <Link href={href} aria-label={label} className={cn(cls, "border-navy/15 bg-white text-navy hover:bg-cream")}>
       {children}
     </Link>
   );

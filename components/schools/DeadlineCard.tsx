@@ -3,7 +3,7 @@ import type { Deadline } from "@/lib/types";
 import { Badge } from "@/components/ui/Badge";
 import { CalendarIcon, ExternalLinkIcon } from "@/components/ui/Icon";
 import { RemindButton } from "@/components/deadlines/RemindButton";
-import { daysUntilSa } from "@/lib/utils";
+import { formatNumber, daysUntilSa } from "@/lib/utils";
 
 interface Props {
   deadline: Deadline;
@@ -56,7 +56,7 @@ export function DeadlineCard({ deadline, schoolName }: Props) {
               label="Application fee"
               value={
                 deadline.application_fee != null
-                  ? `R${deadline.application_fee.toLocaleString("en-ZA")}`
+                  ? `R${formatNumber(deadline.application_fee)}`
                   : null
               }
             />

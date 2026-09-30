@@ -59,6 +59,8 @@ export interface School {
   // Derived from grades_from / grades_to (Grade R = 0).
   grade_min?: number | null;
   grade_max?: number | null;
+  // Only set on "near me" results.
+  distance_km?: number | null;
 }
 
 export interface Deadline {
@@ -127,8 +129,8 @@ export const SCHOOL_TYPE_LABELS: Record<SchoolType, string> = {
 };
 
 export const SCHOOL_TYPE_BADGE_CLASSES: Record<SchoolType, string> = {
-  public: "bg-emerald-100 text-emerald-800",
-  model_c: "bg-sky-100 text-sky-800",
-  private: "bg-amber-100 text-amber-900",
-  university: "bg-violet-100 text-violet-800",
+  public: "bg-emerald-50 text-emerald-800",
+  model_c: "bg-sky-50 text-sky-800",
+  private: "bg-violet-50 text-violet-800",
+  university: "bg-indigo-50 text-indigo-800",
 };

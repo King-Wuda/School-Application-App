@@ -25,30 +25,94 @@ export function formatFeeRange(min: number | null, max: number | null): string {
 }
 
 /** Fee label for a school, falling back to the official no-fee status. */
-export function formatSchoolFees(school: {
-  type: string;
-  fee_monthly_min: number | null;
-  fee_monthly_max: number | null;
-  no_fee_school?: boolean | null;
-}): string {
+export function formatSchoolFees(
+  school: {
+    type: string;
+    fee_monthly_min: number | null;
+    fee_monthly_max: number | null;
+    no_fee_school?: boolean | null;
+  },
+  opts?: { compact?: boolean },
+): string {
   if (school.type === "university") return "See website";
   if (school.fee_monthly_min == null && school.fee_monthly_max == null && school.no_fee_school) {
     return "No-fee school";
   }
+  if (opts?.compact) return formatFeeShort(school.fee_monthly_min, school.fee_monthly_max);
   return formatFeeRange(school.fee_monthly_min, school.fee_monthly_max);
+}
+
+/** Card-sized fee label: "R3 400–3 600/mo". */
+export function formatFeeShort(min: number | null, max: number | null): string {
+  if (min == null && max == null) return "Fees not listed";
+  if (min != null && max != null && min !== max) return `R${fmt(min)}–${fmt(max)}/mo`;
+  if (min != null && max == null) return `From R${fmt(min)}/mo`;
+  return `R${fmt((max ?? min)!)}/mo`;
+}
+
+/** "Grade 000" / "Grade 00" are pre-school years; show them in plain language. */
+function gradeLabel(grade: string): string {
+  if (/\b0{2,3}\b/.test(grade)) return "Pre-school";
+  return grade;
 }
 
 export function formatGradeRange(from: string | null, to: string | null): string {
   if (!from && !to) return "Grades not listed";
   if (from && to) {
-    if (from === to) return from;
-    return `${from} – ${to}`;
+    if (from === to) return gradeLabel(from);
+    return `${gradeLabel(from)} – ${gradeLabel(to)}`;
   }
-  return from ?? to ?? "";
+  return gradeLabel((from ?? to)!);
+}
+
+/** Compact form for cards: "Gr R–7", "Gr 8–12", "Pre-school–Gr 12". */
+export function formatGradeShort(from: string | null, to: string | null): string | null {
+  if (!from || !to) return null;
+  const short = (g: string) => (/\b0{2,3}\b/.test(g) ? "Pre-school" : g.replace(/^Grade\s*/i, ""));
+  const a = short(from);
+  const b = short(to);
+  if (!/^(R|\d+)$/.test(b)) return formatGradeRange(from, to);
+  return a === "Pre-school" ? `Pre-school–Gr ${b}` : `Gr ${a}–${b}`;
+}
+
+/**
+ * Thousands-separated number, e.g. 24000 → "24 000". Deliberately not
+ * `toLocaleString`: Node and browsers ship different locale data, which made
+ * server and client render different text and broke hydration.
+ */
+export function formatNumber(n: number): string {
+  return Math.round(n)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
 function fmt(n: number): string {
-  return n.toLocaleString("en-ZA");
+  return formatNumber(n);
+}
+
+/** Google Maps directions link to a school. */
+export function directionsUrl(school: {
+  name: string;
+  latitude: number | null;
+  longitude: number | null;
+  address?: string | null;
+}): string | null {
+  const dest =
+    school.latitude != null && school.longitude != null
+      ? `${school.latitude},${school.longitude}`
+      : school.address
+        ? `${school.name}, ${school.address}`
+        : null;
+  return dest
+    ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(dest)}`
+    : null;
+}
+
+/** "021 712 2051" → "tel:+27217122051" */
+export function telHref(phone: string | null | undefined): string | null {
+  const digits = (phone ?? "").replace(/\D/g, "");
+  if (digits.length === 10 && digits.startsWith("0")) return `tel:+27${digits.slice(1)}`;
+  return digits.length >= 9 ? `tel:${digits}` : null;
 }
 
 // Haversine distance in km
@@ -69,9 +133,9 @@ export function distanceKm(
   return 2 * R * Math.asin(Math.sqrt(a));
 }
 
-export function formatDistance(km: number | null): string {
+export function formatDistance(km: number | null | undefined): string {
   if (km == null) return "Distance unknown";
-  if (km < 1) return `${Math.round(km * 1000)} m away`;
+  if (km < 1) return `${Math.round(km * 100) * 10} m away`;
   if (km < 10) return `${km.toFixed(1)} km away`;
   return `${Math.round(km)} km away`;
 }
