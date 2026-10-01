@@ -1,10 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, DM_Sans } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ShortlistProvider } from "@/components/shortlist/ShortlistProvider";
+import { Analytics } from "@/components/analytics/Analytics";
+import { FeedbackButton } from "@/components/feedback/FeedbackButton";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -22,14 +24,20 @@ const dmSans = DM_Sans({
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
+export const viewport: Viewport = {
+  themeColor: "#F9F7F4",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "SchoolFinder SA — Find & Compare Schools in South Africa",
+    default: "SchoolFinder SA — Find the right school for your child",
     template: "%s | SchoolFinder SA",
   },
   description:
-    "Search, compare and shortlist every school and university in South Africa. Free, fast and unbiased.",
+    "Free school search for South African parents. Compare fees, grades, distance and how to apply for every Western Cape school — public, independent and special needs.",
   openGraph: {
     type: "website",
     locale: "en_ZA",
@@ -60,12 +68,14 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <Analytics />
         <ShortlistProvider>
           <SiteHeader />
           <main id="main" className="flex-1">
             {children}
           </main>
           <SiteFooter />
+          <FeedbackButton />
         </ShortlistProvider>
       </body>
     </html>

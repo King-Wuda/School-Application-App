@@ -47,13 +47,15 @@ cp .env.local.example .env.local
 
 Open **SQL editor** in Supabase, paste the contents of [`supabase/migrations/0001_init.sql`](supabase/migrations/0001_init.sql), and run it. This creates the tables, indexes, row-level security policies, and a trigger that auto-creates a `profiles` row on user sign-up.
 
-### 4. Seed 55 real SA schools
+Then run [`supabase/migrations/0002_directory_and_perf.sql`](supabase/migrations/0002_directory_and_perf.sql) the same way. It adds the official directory columns (EMIS number, phase, quintile, learner numbers…) and the search indexes.
+
+### 4. Seed the schools
 
 ```bash
-npm run seed
+DOTENV_CONFIG_PATH=.env.local npm run seed
 ```
 
-The script is idempotent — re-running updates rather than duplicating.
+This loads the curated schools (`data/seed-schools.json`) and then every province directory in `data/schools/` (currently the full Western Cape list, 1,927 schools). The script is idempotent — re-running updates rather than duplicating. Afterwards, click **Refresh site data** in `/admin` so cached pages pick up the new data straight away (otherwise they refresh within an hour).
 
 ### 5. Enable auth providers
 
@@ -111,7 +113,8 @@ The function checks all `reminders`, and for each deadline between now and its c
 | `npm run build`    | Production build (prerenders school detail pages)            |
 | `npm run start`    | Serve the production build                                   |
 | `npm run typecheck`| `tsc --noEmit`                                               |
-| `npm run seed`     | Push `data/seed-schools.json` into Supabase (idempotent)     |
+| `npm run seed`     | Push curated + directory schools into Supabase (idempotent)  |
+| `npm run import:emis -- "<file>.xlsx"` | Convert a DBE masterlist into `data/schools/<province>.json` |
 
 ## Project layout
 
@@ -137,19 +140,45 @@ components/
   admin/                        SchoolForm, DeadlineForm, OpenDayForm
 lib/
   data.ts                       One data layer — Supabase when configured, else seed JSON
-  supabase/                     client.ts (browser), server.ts (SSR), admin.ts (service role)
+  supabase/                     client.ts (browser), server.ts (SSR), public.ts (cached public reads), admin.ts (service role)
   admin-actions.ts              Server actions for admin CRUD
   types.ts, utils.ts, admin.ts
 data/
-  seed-schools.json             55 real SA schools (the fallback + seed source)
+  seed-schools.json             Curated schools with fees, deadlines, open days
+  schools/<province>.json       Official DBE directory per province (generated)
+scripts/
+  seed.ts                       Loads data/ into Supabase
+  import-emis.ts                DBE masterlist .xlsx → data/schools/<province>.json
 supabase/
   migrations/0001_init.sql      Tables, indexes, RLS
+  migrations/0002_…sql          Directory columns + search indexes
   functions/send-deadline-reminders/index.ts
 ```
 
 ## Data source
 
-The seed contains 55 schools across Gauteng, Western Cape and KwaZulu-Natal: 15+ public, 15+ Model C, 15+ private, and 5 universities. Fees, deadlines and addresses are approximate and sourced from public websites — always verify on each school's own site. The admin panel is how you keep the dataset fresh.
+### Official school directory
+
+Every school listing comes from the Department of Basic Education's **Schools Masterlist** (EMIS), which is free, official and updated quarterly: <https://www.education.gov.za/Programmes/EMIS/EMISDownloads.aspx> → *Schools Masterlist Data*.
+
+We're rolling out one province at a time so each one is complete and correct before we move on:
+
+| Province | Status | Schools |
+| --- | --- | --- |
+| Western Cape | ✅ Complete (Masterlist 2025) | 1,927 open ordinary and special-needs schools |
+| Others | ⏳ Not imported yet | Only curated schools |
+
+Adding a province:
+
+1. Download that province's `.xlsx` from the page above.
+2. `npm run import:emis -- "path/to/Gauteng.xlsx"`. This prints a summary and lists any curated school it couldn't match. Add those to `MANUAL_MATCHES` in `scripts/import-emis.ts` and run the import again.
+3. Commit `data/schools/<province>.json`, then run `npm run seed` and click **Refresh site data** in `/admin`.
+
+What the directory gives you: name, public/independent, phase (primary / high / combined / intermediate / special needs / school of skills), address, GPS, phone, district, quintile, no-fee status, learner and educator counts. What it doesn't give you: fees, application deadlines, open days or websites. Those still come from the curated seed and the admin panel. Grade spans are the standard ones for each phase (for example, primary = Grade R–7), so a school with an unusual span needs a manual correction in admin. Closed schools and hospital schools are left out. Some official names are cut off at about 40 characters in the source data.
+
+### Curated schools
+
+The curated seed contains 55 schools across Gauteng, Western Cape and KwaZulu-Natal: 15+ public, 15+ Model C, 15+ private, and 5 universities. Fees, deadlines and addresses are approximate and sourced from public websites — always verify on each school's own site. The admin panel is how you keep the dataset fresh.
 
 ## What's deliberately not in the MVP
 

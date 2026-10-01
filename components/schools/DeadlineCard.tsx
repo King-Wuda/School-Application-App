@@ -1,9 +1,10 @@
+import { FEATURES } from "@/lib/features";
 import { format, parseISO } from "date-fns";
 import type { Deadline } from "@/lib/types";
 import { Badge } from "@/components/ui/Badge";
 import { CalendarIcon, ExternalLinkIcon } from "@/components/ui/Icon";
 import { RemindButton } from "@/components/deadlines/RemindButton";
-import { daysUntilSa } from "@/lib/utils";
+import { formatNumber, daysUntilSa } from "@/lib/utils";
 
 interface Props {
   deadline: Deadline;
@@ -56,7 +57,7 @@ export function DeadlineCard({ deadline, schoolName }: Props) {
               label="Application fee"
               value={
                 deadline.application_fee != null
-                  ? `R${deadline.application_fee.toLocaleString("en-ZA")}`
+                  ? `R${formatNumber(deadline.application_fee)}`
                   : null
               }
             />
@@ -73,6 +74,7 @@ export function DeadlineCard({ deadline, schoolName }: Props) {
             href={deadline.application_url}
             target="_blank"
             rel="noopener noreferrer"
+            data-track="apply"
             className="inline-flex h-10 items-center gap-2 rounded-lg bg-navy px-4 text-sm font-medium text-cream hover:bg-navy/90"
           >
             Apply on school site <ExternalLinkIcon size={14} />
@@ -82,7 +84,7 @@ export function DeadlineCard({ deadline, schoolName }: Props) {
           <p className="text-sm italic text-navy/60">
             Deadline not confirmed — check school website.
           </p>
-        ) : (
+        ) : !FEATURES.reminders ? null : (
           <RemindButton
             deadlineId={deadline.id}
             gradeGroup={deadline.grade_group}

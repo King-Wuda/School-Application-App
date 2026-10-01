@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { SchoolWithRelations } from "@/lib/types";
 import { Button } from "@/components/ui/Button";
 import { DownloadIcon } from "@/components/ui/Icon";
-import { formatFeeRange, formatGradeRange } from "@/lib/utils";
+import { formatSchoolFees, formatGradeRange } from "@/lib/utils";
 import { format, parseISO } from "date-fns";
 
 export function ExportPdfButton({
@@ -63,7 +63,7 @@ export function ExportPdfButton({
         y += 14;
 
         const kv: [string, string][] = [
-          ["Fees", s.type === "university" ? "See website" : formatFeeRange(s.fee_monthly_min, s.fee_monthly_max)],
+          ["Fees", formatSchoolFees(s)],
           ["Grades", formatGradeRange(s.grades_from, s.grades_to)],
           ["Boarding", s.boarding ? "Yes" : "No"],
           ["Curriculum", s.curriculum ?? "—"],

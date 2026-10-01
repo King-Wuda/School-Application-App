@@ -11,6 +11,16 @@
   html {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+    scroll-padding-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   body {
@@ -22,6 +32,16 @@
   h1, h2, h3, h4 {
     font-family: var(--font-fraunces), Georgia, serif;
     letter-spacing: -0.01em;
+  }
+
+  /* One consistent dropdown arrow across browsers. */
+  select:not([multiple]) {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230A1628' stroke-opacity='0.55' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px;
+    padding-right: 2.25rem;
   }
 
   ::selection {
@@ -40,5 +60,35 @@
 @layer components {
   .container-page {
     @apply mx-auto w-full max-w-content px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Horizontal chip rows that scroll on small screens without a scrollbar. */
+  .scroll-row {
+    @apply flex gap-2 overflow-x-auto;
+    scrollbar-width: none;
+  }
+  .scroll-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chip {
+    @apply inline-flex h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-navy/15 bg-white px-3.5 text-sm font-medium text-navy transition-colors hover:border-navy/30 hover:bg-cream;
+  }
+  .chip[aria-pressed="true"],
+  .chip-active {
+    @apply border-navy bg-navy text-cream hover:bg-navy/90;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-navy/55;
+  }
+}
+
+@keyframes progress {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(300%);
   }
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { FEATURES } from "@/lib/features";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
@@ -33,7 +34,7 @@ export default function LoginPage() {
     if (mode === "signin") {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
-      router.push("/account");
+      router.push(safeNext() ?? "/account");
       router.refresh();
     } else {
       const { error } = await supabase.auth.signUp({
@@ -63,9 +64,11 @@ export default function LoginPage() {
           {mode === "signin" ? "Welcome back" : "Create your account"}
         </h1>
         <p className="mt-1 text-sm text-navy/60">
-          Save schools to your shortlist and get deadline reminders.
+          Keep your shortlist on every device{FEATURES.reminders ? " and get deadline reminders" : ""}.
         </p>
 
+        {FEATURES.googleAuth && (
+        <>
         <button
           type="button"
           onClick={handleGoogle}
@@ -79,32 +82,41 @@ export default function LoginPage() {
           <span className="relative z-10 bg-white px-2">or</span>
           <span className="absolute inset-x-0 top-1/2 -z-0 h-px bg-navy/10" />
         </div>
+        </>
+        )}
 
         <form onSubmit={handleEmail} className="space-y-3">
-          <Input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
-            required
-            autoComplete="email"
-          />
-          <Input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            minLength={6}
-            required
-            autoComplete={mode === "signin" ? "current-password" : "new-password"}
-          />
+          <label className="block">
+            <span className="mb-1.5 block text-sm font-medium text-navy">Email</span>
+            <Input
+              type="email"
+              inputMode="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              required
+              autoComplete="email"
+            />
+          </label>
+          <label className="block">
+            <span className="mb-1.5 block text-sm font-medium text-navy">Password</span>
+            <Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder={mode === "signin" ? "Your password" : "At least 6 characters"}
+              minLength={6}
+              required
+              autoComplete={mode === "signin" ? "current-password" : "new-password"}
+            />
+          </label>
           <Button type="submit" className="w-full" disabled={loading}>
             {mode === "signin" ? "Sign in" : "Create account"}
           </Button>
         </form>
 
         {msg && (
-          <p className="mt-4 rounded-lg bg-amber/10 p-3 text-sm text-amber-700">
+          <p role="alert" className="mt-4 rounded-lg bg-amber/10 p-3 text-sm text-amber-700">
             {msg}
           </p>
         )}
@@ -147,4 +159,11 @@ function GoogleIcon() {
       />
     </svg>
   );
+}
+
+/** Where to go after signing in, e.g. /login?next=/owner. Only same-site paths. */
+function safeNext(): string | null {
+  if (typeof window === "undefined") return null;
+  const next = new URLSearchParams(window.location.search).get("next");
+  return next && next.startsWith("/") && !next.startsWith("//") && !next.startsWith("/\\") ? next : null;
 }

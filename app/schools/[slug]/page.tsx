@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllSlugs, getSchoolBySlug } from "@/lib/data";
-import { SchoolDetail } from "@/components/schools/SchoolDetail";
-import { SCHOOL_TYPE_LABELS } from "@/lib/types";
-import { absoluteUrl, formatFeeRange } from "@/lib/utils";
+import { getAllSlugs, getNearbySchools, getSchoolBySlug } from "@/lib/data";
+import { SchoolDetail, describeSchool } from "@/components/schools/SchoolDetail";
+import { absoluteUrl, formatSchoolFees } from "@/lib/utils";
 
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
   try {
-    const slugs = await getAllSlugs("non-university");
-    return slugs.slice(0, 200).map((slug) => ({ slug }));
+    // Pre-render the most-visited pages at build time; the rest are rendered
+    // on first request and then served from the ISR cache.
+    const slugs = await getAllSlugs("non-university", 500);
+    return slugs.map((slug) => ({ slug }));
   } catch {
     return [];
   }
@@ -23,12 +24,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const school = await getSchoolBySlug(params.slug);
   if (!school || school.type === "university") return { title: "School not found" };
-  const typeLabel = SCHOOL_TYPE_LABELS[school.type];
-  const fees = formatFeeRange(school.fee_monthly_min, school.fee_monthly_max);
-  const title = `${school.name} — Fees, Deadlines & Info`;
+  const fees = formatSchoolFees(school);
+  const place = school.town && school.town !== "City of Cape Town" ? school.town : school.suburb;
+  const title = `${school.name}${place && !school.name.includes(place) ? `, ${place}` : ""} — fees, contact & how to apply`;
   const description =
     school.description ??
-    `${school.name} is a ${typeLabel.toLowerCase()} school in ${school.suburb ?? school.province}, ${school.province}. ${fees}.`;
+    (school.fee_monthly_min != null || school.fee_monthly_max != null
+      ? `${describeSchool(school)} Fees: ${fees}.`
+      : describeSchool(school));
   const url = absoluteUrl(`/schools/${school.slug}`);
   return {
     title,
@@ -39,7 +42,6 @@ export async function generateMetadata({
       url,
       title: `${title} | SchoolFinder SA`,
       description,
-      images: school.logo_url ? [{ url: school.logo_url }] : undefined,
     },
     twitter: { card: "summary_large_image", title, description },
   };
@@ -52,5 +54,6 @@ export default async function SchoolDetailPage({
 }) {
   const school = await getSchoolBySlug(params.slug);
   if (!school || school.type === "university") notFound();
-  return <SchoolDetail school={school} basePath="/schools" />;
+  const nearby = await getNearbySchools(school);
+  return <SchoolDetail school={school} basePath="/schools" nearby={nearby} />;
 }

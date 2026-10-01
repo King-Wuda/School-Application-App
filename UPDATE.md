@@ -24,6 +24,56 @@ Status as of **12 May 2026**. This is the running list of what's done, what's le
 
 Note: when running the seed script locally, the env file must be passed explicitly — `DOTENV_CONFIG_PATH=.env.local npm run seed` — because the script loads `dotenv` directly rather than Next.js's env loader.
 
+### Update — 1 October 2026: ready for a public test (Facebook groups)
+
+**Tested against a real Supabase-style stack.** I ran it locally on Postgres 16 and PostgREST, the same API layer Supabase uses, with all three migrations applied and a full seed. Every search, filter, near-me, school, compare, sitemap and analytics path works, and re-seeding doesn't create duplicates. Testing turned up one bug, now fixed: searching "hoerskool" found 1 school instead of 88. Search now ignores accents and punctuation, and matches every word separately.
+
+**New:**
+- **Owner analytics at `/owner`:**
+  - Visitors per day, where visitors came from (Facebook and campaign tags), the funnel from visit to search, school view, save and contact, top searches, searches that found nothing, most-viewed schools, devices and feedback.
+  - Only your account can open it.
+  - No cookies, IP addresses or locations are stored, and Do-Not-Track is respected.
+- **Feedback** tab on every page (spam-protected).
+- **Privacy policy** at `/privacy` (POPIA). Usage data is deleted automatically after 24 months.
+- **Link previews** for Facebook and WhatsApp: a site card, plus a card for each school.
+- **Email reminders and Google sign-in are hidden** until you switch them on (see `.env.local.example`).
+
+**Go-live steps, in this order:**
+1. In the Supabase SQL Editor, run `0002_directory_and_perf.sql`, then `0003_analytics_feedback.sql`. Both are safe to re-run.
+2. `DOTENV_CONFIG_PATH=.env.local npm run seed`
+3. In Supabase → Authentication → Providers, make sure **Email** is enabled.
+4. Create your owner login. Run this on your own computer; the password goes into this one command only and is never saved:
+   `OWNER_EMAIL=you@example.com OWNER_PASSWORD='…' DOTENV_CONFIG_PATH=.env.local npm run create-owner`
+5. In Vercel → Settings → Environment Variables, add `OWNER_EMAIL`, `NEXT_PUBLIC_OPERATOR_NAME`, `NEXT_PUBLIC_CONTACT_EMAIL` and `NEXT_PUBLIC_SITE_URL` (your real domain), plus the existing Supabase keys. Then deploy.
+6. Click **Refresh site data** in `/admin`. Sign in at `/login` and open `/owner`.
+7. Paste a school link into Facebook's Sharing Debugger (developers.facebook.com/tools/debug) to check the preview card.
+8. When you post, tag each link: `https://your-domain/?utm_source=facebook&utm_campaign=<group-name>`.
+
+### Update — 30 September 2026: parent-first redesign
+
+- **Search:** "Schools near me" now ranks every matching school by distance, not just the current page. Location is only asked for when you tap the button. Filters apply as soon as you tap them. Active filters show as removable chips. On phones, filters open in a bottom sheet with a live "Show N schools" count. There's a no-fee filter and an area filter. Universities no longer show up in school results. When nothing matches, the page suggests which filter to loosen.
+- **School pages:** key facts (fees, grades, learners, learners per educator), Call / Directions / Website buttons (pinned to the bottom of the screen on phones), "How to apply" guidance for each province and school type (with a link to WCED/GDE online admissions), nearby schools with distances, and plain-English explanations of quintile and EMIS. Past deadlines no longer look like open ones.
+- **Home page:** level tabs plus one search box and a "Show schools near me" button, quick links by need (Grade 1, Grade 8, no fees, special needs), "Browse by area" with school counts, and a how-it-works section.
+- **New `/guide` page:** application timeline, where to apply, a documents checklist and an FAQ (no-fee schools, quintiles, Model C, fee exemptions, appeals).
+- **Compare / shortlist:** more rows (level, learners, learners per educator, distance, contact), the table fits phones, confirmation toasts when you save, and no more "empty shortlist" flash while the page loads.
+- **Bugs fixed:** a hydration error on search (number formatting differed between server and browser), a location prompt firing on every page load, "Grade 000" labels, an invalid `filled` DOM attribute, and horizontal scrolling on phones.
+- **SEO:** `sitemap.xml` (every school), `robots.txt`, a favicon, `School` and `FAQPage` structured data, and school titles that include the area.
+- The `0002` migration gains two indexes (coordinates, no-fee). If you already ran it, run it again — it's safe to re-run.
+
+### Update — 29 September 2026: Western Cape directory + speed fixes
+
+**All Western Cape schools listed.** 1,927 primary, high, combined, intermediate, special-needs and skills schools from the official DBE Schools Masterlist (2025). Each school has its address, GPS location, phone, district, quintile, no-fee status and learner numbers. The 25 curated Western Cape schools are merged in and keep their fees, deadlines and descriptions. Search has a new **Level** filter (primary / high school / special needs), and the **Grade** filter now actually filters results (it was being ignored before). See README → *Data source* for how to add the next province.
+
+**Speed.** Three things were making clicks feel slow:
+1. The middleware checked the Supabase session (a network round-trip) before *every* page load. It now only runs on `/account`, `/auth` and `/login`, the only places that need it.
+2. Public data was read with a cookie-aware client, and that quietly made every page dynamic, so the hourly caching (ISR) on school pages never took effect. Public reads now use a cookie-free client and are cached across requests for an hour. Admin edits (and the new **Refresh site data** button) clear the cache straight away.
+3. Search had no indexes on suburb, address, fees or grades. `0002_directory_and_perf.sql` adds them. Also: the home page is now static, school pages load with one query instead of three, search returns only the columns the cards need, and the search page shows a loading skeleton straight away.
+
+**To deploy this:**
+1. Run `supabase/migrations/0002_directory_and_perf.sql` in the Supabase SQL Editor.
+2. `DOTENV_CONFIG_PATH=.env.local npm run seed`
+3. Deploy, then click **Refresh site data** in `/admin`.
+
 ---
 
 ## ✅ Already done (in this repo)

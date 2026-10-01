@@ -1,5 +1,6 @@
 "use client";
 
+import { FEATURES } from "@/lib/features";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { format, parseISO } from "date-fns";
@@ -66,6 +67,24 @@ export default function DeadlinesPage() {
       // ignore
     }
   };
+
+  if (!FEATURES.reminders) {
+    return (
+      <div className="rounded-3xl border border-dashed border-navy/20 bg-white px-6 py-14 text-center">
+        <p className="font-serif text-2xl text-navy">Deadline reminders are coming soon</p>
+        <p className="mx-auto mt-2 max-w-md text-navy/65">
+          For now, each school&apos;s page shows how and where to apply. Save schools to your
+          shortlist so you can find them again quickly.
+        </p>
+        <Link
+          href="/account/shortlist"
+          className="mt-6 inline-flex h-11 items-center rounded-xl bg-navy px-5 font-semibold text-cream"
+        >
+          Go to my shortlist
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div>

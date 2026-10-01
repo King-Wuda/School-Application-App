@@ -1,114 +1,147 @@
 import type { Metadata } from "next";
-import { FilterSidebar } from "@/components/search/FilterSidebar";
+import Link from "next/link";
+import { listSchools } from "@/lib/data";
+import { activeFilterCount, describeSearch, parseSearchParams } from "@/lib/search-params";
+import { formatNumber } from "@/lib/utils";
+import { SchoolCard } from "@/components/schools/SchoolCard";
+import { FilterPanel } from "@/components/search/FilterPanel";
+import { FilterSheet } from "@/components/search/FilterSheet";
+import { ActiveFilters } from "@/components/search/ActiveFilters";
+import { SearchBar } from "@/components/search/SearchBar";
+import { NearMeButton } from "@/components/search/NearMeButton";
 import { SortSelect } from "@/components/search/SortSelect";
 import { Pagination } from "@/components/search/Pagination";
-import { ResultsGrid } from "@/components/search/ResultsGrid";
-import { listSchools } from "@/lib/data";
-import type { SchoolType } from "@/lib/types";
+import { PendingBar, PendingFrame, SearchNavProvider } from "@/components/search/SearchNav";
+import { EmptyResults } from "@/components/search/EmptyResults";
+import { InfoIcon } from "@/components/ui/Icon";
+import { TrackEvent } from "@/components/analytics/Analytics";
 
-export const metadata: Metadata = {
-  title: "Search schools",
-  description:
-    "Search and filter every school and university in South Africa by province, type, grades and fees.",
-};
+type SP = { [key: string]: string | string[] | undefined };
 
+// Rendered per request (it depends on the query string), but the underlying
+// database queries are cached — see lib/data.ts.
 export const dynamic = "force-dynamic";
 
-function parseQP(sp: { [key: string]: string | string[] | undefined }) {
-  const get = (k: string) => {
-    const v = sp[k];
-    return Array.isArray(v) ? v[0] : v;
-  };
+export function generateMetadata({ searchParams }: { searchParams: SP }): Metadata {
+  const state = parseSearchParams(searchParams);
+  const { title, where } = describeSearch(state);
+  const full = where && !state.near ? `${title} ${where}` : title;
   return {
-    q: get("q") || undefined,
-    province: get("province") || undefined,
-    type: (get("type") as SchoolType | undefined) || undefined,
-    grade: get("grade") || undefined,
-    feeMin: parseNum(get("fee_min")),
-    feeMax: parseNum(get("fee_max")),
-    sort: (get("sort") as any) || "relevance",
-    page: parseNum(get("page")) || 1,
+    title: state.q ? `“${state.q}” — school search` : full,
+    description: `Compare ${full.toLowerCase()} in South Africa: fees, grades, contact details, directions and application deadlines.`,
+    // Personal "near me" searches and deep filter combinations shouldn't be indexed.
+    robots: state.near || state.q || activeFilterCount(state) > 2 ? { index: false, follow: true } : undefined,
   };
 }
 
-function parseNum(v: string | undefined): number | undefined {
-  if (!v) return undefined;
-  const n = Number(v);
-  return Number.isFinite(n) ? n : undefined;
-}
-
-export default async function SearchPage({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
-  const parsed = parseQP(searchParams);
-  const { rows, total, page, pageSize } = await listSchools(parsed);
-
-  const activeLabel = [
-    parsed.province,
-    parsed.type && typeLabel(parsed.type),
-    parsed.q && `"${parsed.q}"`,
-  ]
-    .filter(Boolean)
-    .join(" · ");
+export default async function SearchPage({ searchParams }: { searchParams: SP }) {
+  const state = parseSearchParams(searchParams);
+  const { rows, total, page, pageSize } = await listSchools(state);
+  const { title, where } = describeSearch(state);
+  const activeCount = activeFilterCount(state);
+  const first = total === 0 ? 0 : (page - 1) * pageSize + 1;
+  const last = Math.min(total, page * pageSize);
+  const partialProvince = state.province && state.province !== "Western Cape";
 
   return (
-    <div className="container-page py-6 sm:py-10">
-      <header className="mb-6">
-        <h1 className="font-serif text-hero text-navy">Schools</h1>
-        <p className="mt-1 text-navy/70">
-          {total.toLocaleString("en-ZA")} result{total === 1 ? "" : "s"}
-          {activeLabel ? ` · ${activeLabel}` : ""}
-        </p>
-      </header>
-
-      <div className="grid gap-6 lg:grid-cols-[260px_1fr]">
-        <aside className="lg:sticky lg:top-20 lg:self-start">
-          <details className="group lg:open:pointer-events-auto" open>
-            <summary className="flex cursor-pointer items-center justify-between rounded-lg border border-navy/10 bg-white px-4 py-3 text-sm font-medium text-navy lg:hidden">
-              Filters
-              <span className="text-navy/40 group-open:hidden">+ Open</span>
-              <span className="hidden text-navy/40 group-open:inline">× Close</span>
-            </summary>
-            <div className="mt-3 rounded-xl border border-navy/10 bg-white p-4 lg:mt-0">
-              <FilterSidebar
-                initial={{
-                  q: parsed.q,
-                  province: parsed.province,
-                  type: parsed.type,
-                  grade: parsed.grade,
-                  feeMin: parsed.feeMin != null ? String(parsed.feeMin) : "",
-                  feeMax: parsed.feeMax != null ? String(parsed.feeMax) : "",
-                }}
-              />
-            </div>
-          </details>
-        </aside>
-
-        <section>
-          <div className="mb-4 flex items-center justify-end">
-            <SortSelect current={parsed.sort} />
+    <SearchNavProvider>
+      <PendingBar />
+      {page === 1 && (
+        <TrackEvent
+          name="search"
+          props={{
+            q: state.q,
+            area: state.area,
+            level: state.level,
+            grade: state.grade,
+            type: state.type,
+            province: state.province,
+            no_fee: state.noFee || undefined,
+            fee_max: state.feeMax,
+            near: Boolean(state.near) || undefined,
+            radius: state.radiusKm,
+            sort: state.sort === "relevance" ? undefined : state.sort,
+            results: total,
+          }}
+        />
+      )}
+      <div className="border-b border-navy/10 bg-white">
+        <div className="container-page py-5 sm:py-7">
+          <h1 className="font-serif text-2xl text-navy sm:text-3xl">
+            {title}
+            {where && <span className="text-navy/55"> {where}</span>}
+          </h1>
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+            <SearchBar initial={state.q} />
+            <NearMeButton near={state.near} radiusKm={state.radiusKm} />
           </div>
-
-          {rows.length === 0 ? (
-            <div className="rounded-xl border border-dashed border-navy/20 bg-white p-10 text-center">
-              <p className="font-serif text-xl text-navy">No schools found</p>
-              <p className="mt-2 text-navy/60">
-                Try broadening your filters or searching a different area.
-              </p>
-            </div>
-          ) : (
-            <ResultsGrid rows={rows} sort={parsed.sort} />
-          )}
-
-          <Pagination page={page} pageSize={pageSize} total={total} />
-        </section>
+        </div>
       </div>
-    </div>
-  );
-}
 
-function typeLabel(t: SchoolType) {
-  return { public: "Public", model_c: "Model C", private: "Private", university: "University" }[t];
+      <div className="container-page py-6 sm:py-8">
+        <div className="grid gap-8 lg:grid-cols-[272px_1fr]">
+          <aside className="hidden lg:block" aria-label="Filters">
+            <div className="sticky top-20 rounded-2xl border border-navy/10 bg-white p-5">
+              <FilterPanel state={state} />
+            </div>
+          </aside>
+
+          <section aria-labelledby="results-heading" className="min-w-0">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p id="results-heading" className="text-sm text-navy/70" aria-live="polite">
+                {total === 0 ? (
+                  "No schools found"
+                ) : (
+                  <>
+                    <span className="font-semibold text-navy">{formatNumber(total)}</span>{" "}
+                    school{total === 1 ? "" : "s"}
+                    {total > pageSize && (
+                      <span className="text-navy/50">
+                        {" "}
+                        · showing {formatNumber(first)}–{formatNumber(last)}
+                      </span>
+                    )}
+                  </>
+                )}
+              </p>
+              <div className="flex items-center gap-2">
+                <FilterSheet state={state} total={total} activeCount={activeCount} />
+                <SortSelect current={state.sort} hasLocation={Boolean(state.near)} />
+              </div>
+            </div>
+
+            <div className="mt-3">
+              <ActiveFilters state={state} />
+            </div>
+
+            {partialProvince && (
+              <div className="mt-4 flex gap-3 rounded-xl border border-amber/40 bg-amber-50 p-4 text-sm text-navy">
+                <InfoIcon size={18} className="mt-0.5 shrink-0 text-amber-600" />
+                <p>
+                  We&apos;re still adding {state.province} schools — only a handful are listed so far.{" "}
+                  <Link href="/search?province=Western+Cape" className="font-semibold underline">
+                    Every Western Cape school
+                  </Link>{" "}
+                  is already here.
+                </p>
+              </div>
+            )}
+
+            <PendingFrame className="mt-5">
+              {rows.length === 0 ? (
+                <EmptyResults state={state} />
+              ) : (
+                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
+                  {rows.map((s) => (
+                    <SchoolCard key={s.id} school={s} />
+                  ))}
+                </div>
+              )}
+              <Pagination page={page} pageSize={pageSize} total={total} />
+            </PendingFrame>
+          </section>
+        </div>
+      </div>
+    </SearchNavProvider>
+  );
 }

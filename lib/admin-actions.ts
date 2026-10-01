@@ -1,14 +1,27 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { isAdminAuthed } from "./admin";
+import { SCHOOLS_CACHE_TAG } from "./data";
 import { getSupabaseAdminClient } from "./supabase/admin";
 import { slugify } from "./utils";
 import type { SchoolType } from "./types";
 
 function guard() {
   if (!isAdminAuthed()) throw new Error("Not authorized");
+}
+
+/** Purge cached school data (search, home page, school pages) after an edit. */
+function purgeSchoolCache() {
+  revalidateTag(SCHOOLS_CACHE_TAG);
+}
+
+/** Clears cached public data, e.g. after `npm run seed` or a directory import. */
+export async function refreshPublicData() {
+  guard();
+  purgeSchoolCache();
+  revalidatePath("/", "layout");
 }
 
 // ─── Schools ───────────────────────────────────────────────────────────────
@@ -34,6 +47,7 @@ export async function createSchool(formData: FormData) {
     .select("slug")
     .single();
   if (error) throw new Error(error.message);
+  purgeSchoolCache();
   revalidatePath("/admin");
   revalidatePath(`/schools/${row.slug}`);
   redirect(`/admin/${row.slug}`);
@@ -50,6 +64,7 @@ export async function updateSchool(slug: string, formData: FormData) {
     .select("slug")
     .single();
   if (error) throw new Error(error.message);
+  purgeSchoolCache();
   revalidatePath("/admin");
   revalidatePath(`/schools/${slug}`);
   revalidatePath(`/schools/${row.slug}`);
@@ -61,6 +76,7 @@ export async function deleteSchool(slug: string) {
   const supabase = getSupabaseAdminClient();
   const { error } = await supabase.from("schools").delete().eq("slug", slug);
   if (error) throw new Error(error.message);
+  purgeSchoolCache();
   revalidatePath("/admin");
   redirect("/admin");
 }
@@ -73,6 +89,7 @@ export async function toggleFeatured(slug: string, featured: boolean) {
     .update({ is_featured: featured })
     .eq("slug", slug);
   if (error) throw new Error(error.message);
+  purgeSchoolCache();
   revalidatePath("/admin");
   revalidatePath(`/schools/${slug}`);
 }
@@ -133,6 +150,7 @@ export async function upsertDeadline(schoolId: string, schoolSlug: string, formD
     const { error } = await supabase.from("deadlines").insert(payload);
     if (error) throw new Error(error.message);
   }
+  purgeSchoolCache();
   revalidatePath(`/admin/${schoolSlug}`);
   revalidatePath(`/schools/${schoolSlug}`);
 }
@@ -142,6 +160,7 @@ export async function deleteDeadline(id: string, schoolSlug: string) {
   const supabase = getSupabaseAdminClient();
   const { error } = await supabase.from("deadlines").delete().eq("id", id);
   if (error) throw new Error(error.message);
+  purgeSchoolCache();
   revalidatePath(`/admin/${schoolSlug}`);
   revalidatePath(`/schools/${schoolSlug}`);
 }
@@ -168,6 +187,7 @@ export async function upsertOpenDay(schoolId: string, schoolSlug: string, formDa
     const { error } = await supabase.from("open_days").insert(payload);
     if (error) throw new Error(error.message);
   }
+  purgeSchoolCache();
   revalidatePath(`/admin/${schoolSlug}`);
   revalidatePath(`/schools/${schoolSlug}`);
 }
@@ -177,6 +197,7 @@ export async function deleteOpenDay(id: string, schoolSlug: string) {
   const supabase = getSupabaseAdminClient();
   const { error } = await supabase.from("open_days").delete().eq("id", id);
   if (error) throw new Error(error.message);
+  purgeSchoolCache();
   revalidatePath(`/admin/${schoolSlug}`);
   revalidatePath(`/schools/${schoolSlug}`);
 }

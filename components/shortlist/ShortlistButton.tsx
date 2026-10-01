@@ -1,85 +1,82 @@
 "use client";
 
-import { useState } from "react";
 import { HeartIcon } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
 import { useShortlist } from "./ShortlistProvider";
+import { track } from "@/lib/analytics/client";
 
 interface Props {
   schoolId: string;
+  schoolName?: string;
   variant?: "icon" | "full";
   className?: string;
 }
 
-export function ShortlistButton({ schoolId, variant = "icon", className }: Props) {
-  const { has, toggle, isAuthed } = useShortlist();
-  const [msg, setMsg] = useState<string | null>(null);
+export function ShortlistButton({ schoolId, schoolName, variant = "icon", className }: Props) {
+  const { has, toggle, isAuthed, notify, ids } = useShortlist();
   const saved = has(schoolId);
+  const name = schoolName ?? "School";
 
   const onClick = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setMsg(null);
     const wasSaved = saved;
     const res = await toggle(schoolId);
-    if (!res.ok && res.reason) {
-      setMsg(res.reason);
+    if (!res.ok) {
+      notify(res.reason ?? "Couldn't save that school.", { href: "/account/shortlist", label: "Manage" });
       return;
     }
-    if (!wasSaved && !isAuthed) {
-      setMsg("Saved locally. Sign in to keep it across devices.");
-      setTimeout(() => setMsg(null), 4000);
+    track(wasSaved ? "shortlist_remove" : "shortlist_add", { school: schoolName, count: wasSaved ? ids.size - 1 : ids.size + 1 });
+    if (wasSaved) {
+      notify(`Removed ${name} from your shortlist.`);
+    } else {
+      const count = ids.size + 1;
+      notify(
+        isAuthed
+          ? `Saved · ${count} school${count === 1 ? "" : "s"} on your shortlist`
+          : `Saved on this device · ${count} on your shortlist`,
+        count >= 2 ? { href: "/compare", label: "Compare" } : { href: "/account/shortlist", label: "View" },
+      );
     }
   };
 
+  const label = saved ? `Remove ${name} from shortlist` : `Save ${name} to shortlist`;
+
   if (variant === "icon") {
     return (
-      <div className="inline-flex flex-col items-end gap-1">
-        <button
-          type="button"
-          onClick={onClick}
-          aria-pressed={saved}
-          aria-label={saved ? "Remove from shortlist" : "Save to shortlist"}
-          title={saved ? "Remove from shortlist" : "Save to shortlist"}
-          className={cn(
-            "inline-flex h-10 w-10 items-center justify-center rounded-full border border-navy/15 bg-white transition-colors hover:bg-cream",
-            saved ? "text-red-500" : "text-navy/70",
-            className,
-          )}
-        >
-          <HeartIcon filled={saved} />
-        </button>
-        {msg && (
-          <span role="status" className="max-w-[220px] text-right text-xs text-navy/60">
-            {msg}
-          </span>
-        )}
-      </div>
-    );
-  }
-
-  return (
-    <div>
       <button
         type="button"
         onClick={onClick}
         aria-pressed={saved}
+        aria-label={label}
+        title={saved ? "Saved — tap to remove" : "Save to shortlist"}
         className={cn(
-          "inline-flex h-11 items-center gap-2 rounded-lg border px-4 text-sm font-medium transition-colors",
-          saved
-            ? "border-red-200 bg-red-50 text-red-700 hover:bg-red-100"
-            : "border-navy/15 bg-white text-navy hover:bg-cream",
+          "inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors",
+          saved ? "bg-rose-50 text-rose-600 hover:bg-rose-100" : "text-navy/50 hover:bg-navy/5 hover:text-navy",
           className,
         )}
       >
-        <HeartIcon filled={saved} size={18} />
-        {saved ? "Saved to shortlist" : "Save to shortlist"}
+        <HeartIcon filled={saved} size={20} />
       </button>
-      {msg && (
-        <p role="status" className="mt-1 text-sm text-navy/60">
-          {msg}
-        </p>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={saved}
+      aria-label={label}
+      className={cn(
+        "inline-flex h-11 items-center justify-center gap-2 rounded-xl border px-4 text-sm font-medium transition-colors",
+        saved
+          ? "border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100"
+          : "border-navy/15 bg-white text-navy hover:bg-cream",
+        className,
       )}
-    </div>
+    >
+      <HeartIcon filled={saved} size={18} />
+      {saved ? "Saved" : "Save"}
+    </button>
   );
 }

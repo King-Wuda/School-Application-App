@@ -1,39 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { CompareClient } from "@/components/compare/CompareClient";
-import { useShortlist } from "@/components/shortlist/ShortlistProvider";
-import type { SchoolWithRelations } from "@/lib/types";
+import { useShortlistSchools } from "@/components/shortlist/useShortlistSchools";
+import { Skeleton } from "@/components/ui/Skeleton";
 
 export default function ComparePage() {
-  const { ids } = useShortlist();
-  const [schools, setSchools] = useState<SchoolWithRelations[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const arr = Array.from(ids);
-    if (arr.length === 0) {
-      setSchools([]);
-      setLoading(false);
-      return;
-    }
-    setLoading(true);
-    fetch(`/api/schools?ids=${arr.join(",")}`)
-      .then((r) => r.json())
-      .then((json) => setSchools(json.schools ?? []))
-      .finally(() => setLoading(false));
-  }, [ids]);
+  const { schools, loading } = useShortlistSchools();
 
   return (
-    <div className="container-page py-6 sm:py-10">
-      <header className="mb-6">
+    <div className="container-page py-8 sm:py-12">
+      <header className="mb-8">
         <h1 className="font-serif text-hero text-navy">Compare schools</h1>
-        <p className="mt-1 text-navy/70">
-          Select up to 3 shortlisted schools to compare side-by-side.
+        <p className="mt-2 max-w-2xl text-navy/70">
+          Pick up to three schools from your shortlist to see them side by side.
         </p>
       </header>
       {loading ? (
-        <p className="text-navy/60">Loading…</p>
+        <div className="space-y-4" role="status" aria-label="Loading your shortlist">
+          <Skeleton className="h-24 rounded-2xl" />
+          <Skeleton className="h-96 rounded-2xl" />
+        </div>
       ) : (
         <CompareClient schools={schools} />
       )}
