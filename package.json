@@ -9,6 +9,7 @@
     "lint": "next lint",
     "seed": "tsx scripts/seed.ts",
     "import:emis": "tsx scripts/import-emis.ts",
+    "create-owner": "tsx scripts/create-owner.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

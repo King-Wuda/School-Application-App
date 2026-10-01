@@ -1,3 +1,4 @@
+import { FEATURES } from "@/lib/features";
 import Link from "next/link";
 import { SearchForm } from "@/components/search/SearchForm";
 import { SchoolCard } from "@/components/schools/SchoolCard";
@@ -228,7 +229,9 @@ export default async function HomePage() {
               {[
                 { icon: SearchIcon, title: "Search & shortlist", body: "Filter by grade, fees and distance. Tap the heart to save schools." },
                 { icon: ClipboardIcon, title: "Compare & apply", body: "Compare side by side, then apply on the school's or province's own site." },
-                { icon: BellIcon, title: "Never miss a date", body: "Get email reminders 30 and 7 days before application deadlines." },
+                FEATURES.reminders
+                  ? { icon: BellIcon, title: "Never miss a date", body: "Get email reminders 30 and 7 days before application deadlines." }
+                  : { icon: MapPinIcon, title: "Visit & decide", body: "Get directions, call the school, and check open days before you choose." },
               ].map((s, i) => (
                 <li key={s.title} className="rounded-2xl bg-white/[0.06] p-5 ring-1 ring-white/10">
                   <span className="flex items-center gap-3">
@@ -252,8 +255,9 @@ export default async function HomePage() {
           <div>
             <h2 className="font-serif text-2xl text-navy sm:text-3xl">Keep your shortlist on every device</h2>
             <p className="mt-2 max-w-xl text-navy/65">
-              A free account saves your shortlist and emails you before deadlines close. No
-              spam, and we never share your details with schools.
+              A free account saves your shortlist so it&apos;s there on your phone and computer.
+              {FEATURES.reminders && " We'll also email you before deadlines close."} No spam, and
+              we never share your details with schools.
             </p>
           </div>
           <Link

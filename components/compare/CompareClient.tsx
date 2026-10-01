@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { format, parseISO } from "date-fns";
 import { SchoolAvatar } from "@/components/ui/SchoolAvatar";
+import { TrackEvent } from "@/components/analytics/Analytics";
 import { Badge } from "@/components/ui/Badge";
 import { useShortlist } from "@/components/shortlist/ShortlistProvider";
 import { useUserPosition } from "@/components/location/useUserPosition";
@@ -74,6 +75,7 @@ export function CompareClient({ schools }: Props) {
 
   return (
     <div className="space-y-6">
+      <TrackEvent name="compare_view" props={{ saved: schools.length }} />
       <div className="rounded-2xl border border-navy/10 bg-white p-4 sm:p-5">
         <p className="text-sm font-medium text-navy">
           Your shortlist <span className="text-navy/50">· choose up to {MAX_COMPARE}</span>

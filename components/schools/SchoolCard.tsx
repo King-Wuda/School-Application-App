@@ -119,6 +119,8 @@ export function SchoolCard({ school, showFeatured = true }: Props) {
             href={school.website_url}
             target="_blank"
             rel="noopener noreferrer"
+            data-track="website"
+            data-school={school.slug}
             className="relative z-10 inline-flex h-9 items-center gap-1.5 rounded-lg px-2.5 text-sm font-medium text-navy/70 hover:bg-navy/5 hover:text-navy"
           >
             Website <ExternalLinkIcon size={13} />

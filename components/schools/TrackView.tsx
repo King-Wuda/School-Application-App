@@ -2,9 +2,11 @@
 
 import { useEffect } from "react";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
+import { track } from "@/lib/analytics/client";
 
-export function TrackView({ schoolId }: { schoolId: string }) {
+export function TrackView({ schoolId, slug, name }: { schoolId: string; slug: string; name: string }) {
   useEffect(() => {
+    track("school_view", { slug, name });
     (async () => {
       try {
         const supabase = getSupabaseBrowserClient();
@@ -22,6 +24,6 @@ export function TrackView({ schoolId }: { schoolId: string }) {
         // best-effort — silent fail
       }
     })();
-  }, [schoolId]);
+  }, [schoolId, slug, name]);
   return null;
 }

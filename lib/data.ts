@@ -10,7 +10,7 @@ import type {
 } from "./types";
 import { hasSupabaseEnv } from "./supabase/server";
 import { getSupabasePublicClient } from "./supabase/public";
-import { distanceKm, gradeNumber, sanitiseLike } from "./utils";
+import { distanceKm, gradeNumber, normaliseSearch, sanitiseLike, searchWords } from "./utils";
 import seedSchoolsJson from "@/data/seed-schools.json";
 import { DIRECTORY_LOADERS } from "@/data/schools";
 
@@ -230,13 +230,10 @@ export const listSchools = cached(
       const supabase = getSupabasePublicClient();
       let query = supabase.from("schools").select(LIST_COLUMNS, { count: "exact" });
 
-      const q = filters.q ? sanitiseLike(filters.q) : "";
+      // Every word must appear somewhere in the school's name or location.
+      for (const w of filters.q ? searchWords(filters.q) : []) query = query.ilike("search_text", `%${w}%`);
       const area = filters.area ? sanitiseLike(filters.area) : "";
-      const qCond = `name.ilike.%${q}%,suburb.ilike.%${q}%,town.ilike.%${q}%,address.ilike.%${q}%`;
-      const areaCond = `suburb.ilike.%${area}%,town.ilike.%${area}%,address.ilike.%${area}%`;
-      if (q && area) query = query.or(`and(or(${qCond}),or(${areaCond}))`);
-      else if (q) query = query.or(qCond);
-      else if (area) query = query.or(areaCond);
+      if (area) query = query.or(`suburb.ilike.%${area}%,town.ilike.%${area}%,address.ilike.%${area}%`);
 
       if (filters.province) query = query.eq("province", filters.province);
       query = filters.type ? query.eq("type", filters.type) : query.neq("type", "university");
@@ -281,11 +278,12 @@ export const listSchools = cached(
 
     // Fallback — in-memory filter over bundled data
     rows = (await fallbackSchools()).map(({ deadlines, open_days, ...s }) => s);
-    const q = filters.q?.toLowerCase();
-    if (q) {
-      rows = rows.filter((s) =>
-        [s.name, s.suburb, s.town, s.address].some((f) => (f ?? "").toLowerCase().includes(q)),
-      );
+    const words = filters.q ? searchWords(filters.q) : [];
+    if (words.length) {
+      rows = rows.filter((s) => {
+        const text = normaliseSearch([s.name, s.suburb, s.town, s.address].filter(Boolean).join(" "));
+        return words.every((w) => text.includes(w));
+      });
     }
     const area = filters.area?.toLowerCase();
     if (area) {

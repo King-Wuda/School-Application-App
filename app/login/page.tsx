@@ -1,5 +1,6 @@
 "use client";
 
+import { FEATURES } from "@/lib/features";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
@@ -33,7 +34,7 @@ export default function LoginPage() {
     if (mode === "signin") {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
-      router.push("/account");
+      router.push(safeNext() ?? "/account");
       router.refresh();
     } else {
       const { error } = await supabase.auth.signUp({
@@ -63,9 +64,11 @@ export default function LoginPage() {
           {mode === "signin" ? "Welcome back" : "Create your account"}
         </h1>
         <p className="mt-1 text-sm text-navy/60">
-          Save schools to your shortlist and get deadline reminders.
+          Keep your shortlist on every device{FEATURES.reminders ? " and get deadline reminders" : ""}.
         </p>
 
+        {FEATURES.googleAuth && (
+        <>
         <button
           type="button"
           onClick={handleGoogle}
@@ -79,6 +82,8 @@ export default function LoginPage() {
           <span className="relative z-10 bg-white px-2">or</span>
           <span className="absolute inset-x-0 top-1/2 -z-0 h-px bg-navy/10" />
         </div>
+        </>
+        )}
 
         <form onSubmit={handleEmail} className="space-y-3">
           <label className="block">
@@ -154,4 +159,11 @@ function GoogleIcon() {
       />
     </svg>
   );
+}
+
+/** Where to go after signing in, e.g. /login?next=/owner. Only same-site paths. */
+function safeNext(): string | null {
+  if (typeof window === "undefined") return null;
+  const next = new URLSearchParams(window.location.search).get("next");
+  return next && next.startsWith("/") && !next.startsWith("//") && !next.startsWith("/\\") ? next : null;
 }

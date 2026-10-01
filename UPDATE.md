@@ -24,6 +24,31 @@ Status as of **12 May 2026**. This is the running list of what's done, what's le
 
 Note: when running the seed script locally, the env file must be passed explicitly — `DOTENV_CONFIG_PATH=.env.local npm run seed` — because the script loads `dotenv` directly rather than Next.js's env loader.
 
+### Update — 1 October 2026: ready for a public test (Facebook groups)
+
+**Tested against a real Supabase-style stack.** I ran it locally on Postgres 16 and PostgREST, the same API layer Supabase uses, with all three migrations applied and a full seed. Every search, filter, near-me, school, compare, sitemap and analytics path works, and re-seeding doesn't create duplicates. Testing turned up one bug, now fixed: searching "hoerskool" found 1 school instead of 88. Search now ignores accents and punctuation, and matches every word separately.
+
+**New:**
+- **Owner analytics at `/owner`:**
+  - Visitors per day, where visitors came from (Facebook and campaign tags), the funnel from visit to search, school view, save and contact, top searches, searches that found nothing, most-viewed schools, devices and feedback.
+  - Only your account can open it.
+  - No cookies, IP addresses or locations are stored, and Do-Not-Track is respected.
+- **Feedback** tab on every page (spam-protected).
+- **Privacy policy** at `/privacy` (POPIA). Usage data is deleted automatically after 24 months.
+- **Link previews** for Facebook and WhatsApp: a site card, plus a card for each school.
+- **Email reminders and Google sign-in are hidden** until you switch them on (see `.env.local.example`).
+
+**Go-live steps, in this order:**
+1. In the Supabase SQL Editor, run `0002_directory_and_perf.sql`, then `0003_analytics_feedback.sql`. Both are safe to re-run.
+2. `DOTENV_CONFIG_PATH=.env.local npm run seed`
+3. In Supabase → Authentication → Providers, make sure **Email** is enabled.
+4. Create your owner login. Run this on your own computer; the password goes into this one command only and is never saved:
+   `OWNER_EMAIL=you@example.com OWNER_PASSWORD='…' DOTENV_CONFIG_PATH=.env.local npm run create-owner`
+5. In Vercel → Settings → Environment Variables, add `OWNER_EMAIL`, `NEXT_PUBLIC_OPERATOR_NAME`, `NEXT_PUBLIC_CONTACT_EMAIL` and `NEXT_PUBLIC_SITE_URL` (your real domain), plus the existing Supabase keys. Then deploy.
+6. Click **Refresh site data** in `/admin`. Sign in at `/login` and open `/owner`.
+7. Paste a school link into Facebook's Sharing Debugger (developers.facebook.com/tools/debug) to check the preview card.
+8. When you post, tag each link: `https://your-domain/?utm_source=facebook&utm_campaign=<group-name>`.
+
 ### Update — 30 September 2026: parent-first redesign
 
 - **Search:** "Schools near me" now ranks every matching school by distance, not just the current page. Location is only asked for when you tap the button. Filters apply as soon as you tap them. Active filters show as removable chips. On phones, filters open in a bottom sheet with a live "Show N schools" count. There's a no-fee filter and an area filter. Universities no longer show up in school results. When nothing matches, the page suggests which filter to loosen.

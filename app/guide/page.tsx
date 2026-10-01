@@ -166,6 +166,7 @@ export default function GuidePage() {
                 href={p.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-track="admissions_portal"
                 className="group rounded-2xl border border-navy/10 bg-white p-5 transition hover:border-navy/25 hover:shadow-card-hover"
               >
                 <p className="text-xs font-semibold uppercase tracking-wide text-navy/50">{p.province}</p>

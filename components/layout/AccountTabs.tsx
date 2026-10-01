@@ -1,5 +1,6 @@
 "use client";
 
+import { FEATURES } from "@/lib/features";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -7,7 +8,7 @@ import { cn } from "@/lib/utils";
 const TABS = [
   { href: "/account", label: "Dashboard" },
   { href: "/account/shortlist", label: "Shortlist" },
-  { href: "/account/deadlines", label: "My deadlines" },
+  ...(FEATURES.reminders ? [{ href: "/account/deadlines", label: "My deadlines" }] : []),
 ];
 
 export function AccountTabs() {

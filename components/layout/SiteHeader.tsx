@@ -1,5 +1,6 @@
 "use client";
 
+import { FEATURES } from "@/lib/features";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -11,7 +12,7 @@ import { cn } from "@/lib/utils";
 const LINKS = [
   { href: "/search", label: "Find schools" },
   { href: "/compare", label: "Compare" },
-  { href: "/account/deadlines", label: "Deadlines" },
+  ...(FEATURES.reminders ? [{ href: "/account/deadlines", label: "Deadlines" }] : []),
   { href: "/guide", label: "How applications work" },
 ];
 

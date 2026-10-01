@@ -3,6 +3,7 @@
 import { HeartIcon } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
 import { useShortlist } from "./ShortlistProvider";
+import { track } from "@/lib/analytics/client";
 
 interface Props {
   schoolId: string;
@@ -25,6 +26,7 @@ export function ShortlistButton({ schoolId, schoolName, variant = "icon", classN
       notify(res.reason ?? "Couldn't save that school.", { href: "/account/shortlist", label: "Manage" });
       return;
     }
+    track(wasSaved ? "shortlist_remove" : "shortlist_add", { school: schoolName, count: wasSaved ? ids.size - 1 : ids.size + 1 });
     if (wasSaved) {
       notify(`Removed ${name} from your shortlist.`);
     } else {

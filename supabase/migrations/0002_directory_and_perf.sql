@@ -34,6 +34,37 @@ alter table schools add column if not exists grade_max smallint generated always
   end
 ) stored;
 
+-- ─── Accent-insensitive search text ────────────────────────────────────────
+-- Parents type "hoerskool" on a phone, not "Hoërskool". search_text is the
+-- name + suburb + town + address, lower-cased, with accents and punctuation
+-- removed, so every search word can be matched with one indexed ilike.
+create schema if not exists extensions;
+create extension if not exists unaccent with schema extensions;
+
+do $$
+declare ext_schema text;
+begin
+  select n.nspname into ext_schema
+  from pg_extension e join pg_namespace n on n.oid = e.extnamespace
+  where e.extname = 'unaccent';
+  execute format(
+    'create or replace function public.f_unaccent(text) returns text
+       language sql immutable parallel safe strict
+       as $f$ select %1$I.unaccent(%2$L::regdictionary, $1) $f$',
+    ext_schema, ext_schema || '.unaccent');
+end $$;
+
+alter table schools add column if not exists search_text text generated always as (
+  regexp_replace(
+    public.f_unaccent(lower(
+      coalesce(name, '') || ' ' || coalesce(suburb, '') || ' ' || coalesce(town, '') || ' ' || coalesce(address, '')
+    )),
+    '[^a-z0-9 ]', '', 'g'
+  )
+) stored;
+
+create index if not exists schools_search_text_trgm_idx on schools using gin (search_text gin_trgm_ops);
+
 -- ─── Search indexes ────────────────────────────────────────────────────────
 -- Free-text search uses `ilike '%q%'` across name / suburb / town / address;
 -- trigram GIN indexes make those lookups index-backed instead of full scans.

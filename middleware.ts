@@ -35,5 +35,5 @@ export const config = {
   // session-refresh round-trip. Every other page (home, search, school pages)
   // is public and uses the browser client for auth, so running `getUser()`
   // there just added a network call to Supabase before every navigation.
-  matcher: ["/account/:path*", "/auth/:path*", "/login"],
+  matcher: ["/account/:path*", "/auth/:path*", "/login", "/owner/:path*"],
 };

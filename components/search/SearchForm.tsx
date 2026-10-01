@@ -7,6 +7,7 @@ import { useShortlist } from "@/components/shortlist/ShortlistProvider";
 import { LocateIcon, SearchIcon } from "@/components/ui/Icon";
 import { LEVEL_OPTIONS } from "@/lib/search-params";
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/analytics/client";
 
 /** The home page's main search: pick a level, type a place or name, or use "near me". */
 export function SearchForm() {
@@ -29,6 +30,7 @@ export function SearchForm() {
     setLocating(true);
     const res = await requestUserPosition();
     setLocating(false);
+    track("near_me", { result: res.ok ? "ok" : res.reason, source: "home" });
     if (!res.ok) {
       notify(
         res.reason === "denied"

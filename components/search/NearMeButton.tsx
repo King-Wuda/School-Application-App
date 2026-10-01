@@ -6,6 +6,7 @@ import { useShortlist } from "@/components/shortlist/ShortlistProvider";
 import { LocateIcon, XIcon } from "@/components/ui/Icon";
 import { RADIUS_OPTIONS } from "@/lib/search-params";
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/analytics/client";
 import { useSearchNav } from "./SearchNav";
 
 interface Props {
@@ -26,6 +27,7 @@ export function NearMeButton({ near, radiusKm }: Props) {
     setLocating(true);
     const res = await requestUserPosition();
     setLocating(false);
+    track("near_me", { result: res.ok ? "ok" : res.reason, source: "search" });
     if (!res.ok) {
       notify(
         res.reason === "denied"

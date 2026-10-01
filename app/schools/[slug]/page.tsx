@@ -42,7 +42,6 @@ export async function generateMetadata({
       url,
       title: `${title} | SchoolFinder SA`,
       description,
-      images: school.logo_url ? [{ url: school.logo_url }] : undefined,
     },
     twitter: { card: "summary_large_image", title, description },
   };

@@ -1,3 +1,4 @@
+import { FEATURES } from "@/lib/features";
 import Link from "next/link";
 import { LogoMarkIcon } from "@/components/ui/Icon";
 
@@ -18,7 +19,7 @@ const GROUPS = [
       { href: "/guide", label: "How applications work" },
       { href: "/guide#documents", label: "Documents checklist" },
       { href: "/compare", label: "Compare schools" },
-      { href: "/account/deadlines", label: "Deadline reminders" },
+      ...(FEATURES.reminders ? [{ href: "/account/deadlines", label: "Deadline reminders" }] : []),
     ],
   },
   {
@@ -27,6 +28,7 @@ const GROUPS = [
       { href: "/account/shortlist", label: "My shortlist" },
       { href: "/account", label: "Dashboard" },
       { href: "/login", label: "Sign in" },
+      { href: "/privacy", label: "Privacy policy" },
     ],
   },
 ];
@@ -65,7 +67,12 @@ export function SiteFooter() {
           ))}
         </div>
         <div className="mt-12 flex flex-col gap-2 border-t border-navy/10 pt-6 text-xs text-navy/50 sm:flex-row sm:justify-between">
-          <p>© {new Date().getFullYear()} SchoolFinder SA</p>
+          <p>
+            © {new Date().getFullYear()} SchoolFinder SA ·{" "}
+            <Link href="/privacy" className="hover:underline">
+              Privacy
+            </Link>
+          </p>
           <p>
             School directory: Department of Basic Education Schools Masterlist. Fees and dates
             change — always confirm with the school.

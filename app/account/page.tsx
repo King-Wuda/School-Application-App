@@ -1,5 +1,6 @@
 "use client";
 
+import { FEATURES } from "@/lib/features";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
@@ -71,7 +72,7 @@ export default function AccountPage() {
       <div className="rounded-xl border border-dashed border-navy/20 bg-white p-10 text-center">
         <p className="font-serif text-xl text-navy">You're not signed in</p>
         <p className="mt-2 text-navy/60">
-          Sign in to save schools to your shortlist and track deadlines.
+          Sign in to keep your shortlist on every device.
         </p>
         <Link
           href="/login"
@@ -97,12 +98,14 @@ export default function AccountPage() {
           href="/account/shortlist"
           cta="View shortlist"
         />
-        <Tile
-          title="Upcoming deadlines"
-          value={reminderCount}
-          href="/account/deadlines"
-          cta="View deadlines"
-        />
+        {FEATURES.reminders && (
+          <Tile
+            title="Upcoming deadlines"
+            value={reminderCount}
+            href="/account/deadlines"
+            cta="View deadlines"
+          />
+        )}
         <Tile title="Actions" href="/search" cta="Browse schools">
           <div className="mt-4 space-y-2">
             <Link

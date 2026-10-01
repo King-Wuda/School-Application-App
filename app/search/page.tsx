@@ -14,6 +14,7 @@ import { Pagination } from "@/components/search/Pagination";
 import { PendingBar, PendingFrame, SearchNavProvider } from "@/components/search/SearchNav";
 import { EmptyResults } from "@/components/search/EmptyResults";
 import { InfoIcon } from "@/components/ui/Icon";
+import { TrackEvent } from "@/components/analytics/Analytics";
 
 type SP = { [key: string]: string | string[] | undefined };
 
@@ -45,6 +46,25 @@ export default async function SearchPage({ searchParams }: { searchParams: SP })
   return (
     <SearchNavProvider>
       <PendingBar />
+      {page === 1 && (
+        <TrackEvent
+          name="search"
+          props={{
+            q: state.q,
+            area: state.area,
+            level: state.level,
+            grade: state.grade,
+            type: state.type,
+            province: state.province,
+            no_fee: state.noFee || undefined,
+            fee_max: state.feeMax,
+            near: Boolean(state.near) || undefined,
+            radius: state.radiusKm,
+            sort: state.sort === "relevance" ? undefined : state.sort,
+            results: total,
+          }}
+        />
+      )}
       <div className="border-b border-navy/10 bg-white">
         <div className="container-page py-5 sm:py-7">
           <h1 className="font-serif text-2xl text-navy sm:text-3xl">

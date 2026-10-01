@@ -200,3 +200,25 @@ export function gradeNumber(grade: string | null | undefined): number | null {
   const m = /\d+/.exec(grade);
   return m ? Number(m[0]) : null;
 }
+
+/**
+ * Lower-case, accent-free, punctuation-free text — mirrors the database's
+ * `search_text` column, so "Hoërskool" and "hoerskool" match each other.
+ */
+export function normaliseSearch(input: string): string {
+  return input
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9 ]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** Words a search must all match, e.g. "Rondebosch High" → ["rondebosch", "high"]. */
+export function searchWords(q: string): string[] {
+  return normaliseSearch(q.replace(/[-/,.]/g, " "))
+    .split(" ")
+    .filter((w) => w.length > 1 || /\d/.test(w))
+    .slice(0, 6);
+}

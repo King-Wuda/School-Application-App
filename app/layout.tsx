@@ -5,6 +5,8 @@ import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ShortlistProvider } from "@/components/shortlist/ShortlistProvider";
+import { Analytics } from "@/components/analytics/Analytics";
+import { FeedbackButton } from "@/components/feedback/FeedbackButton";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -66,12 +68,14 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <Analytics />
         <ShortlistProvider>
           <SiteHeader />
           <main id="main" className="flex-1">
             {children}
           </main>
           <SiteFooter />
+          <FeedbackButton />
         </ShortlistProvider>
       </body>
     </html>

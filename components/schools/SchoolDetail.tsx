@@ -118,7 +118,7 @@ export function SchoolDetail({ school, basePath, nearby = [] }: Props) {
   return (
     <article className="pb-24 md:pb-0">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <TrackView schoolId={school.id} />
+      <TrackView schoolId={school.id} slug={school.slug} name={school.name} />
 
       {/* ─── Header ─────────────────────────────────────────── */}
       <header className="border-b border-navy/10 bg-white">
@@ -186,6 +186,8 @@ export function SchoolDetail({ school, basePath, nearby = [] }: Props) {
               {phone && (
                 <a
                   href={phone}
+                  data-track="phone"
+                  data-school={school.slug}
                   className="inline-flex h-11 items-center gap-2 rounded-xl border border-navy/15 bg-white px-4 text-sm font-medium text-navy hover:bg-cream"
                 >
                   <PhoneIcon size={16} /> {school.phone}
@@ -196,6 +198,8 @@ export function SchoolDetail({ school, basePath, nearby = [] }: Props) {
                   href={directions}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-track="directions"
+                  data-school={school.slug}
                   className="inline-flex h-11 items-center gap-2 rounded-xl border border-navy/15 bg-white px-4 text-sm font-medium text-navy hover:bg-cream"
                 >
                   <NavigationIcon size={16} /> Directions
@@ -206,6 +210,8 @@ export function SchoolDetail({ school, basePath, nearby = [] }: Props) {
                   href={school.website_url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-track="website"
+                  data-school={school.slug}
                   className="inline-flex h-11 items-center gap-2 rounded-xl bg-navy px-4 text-sm font-semibold text-cream hover:bg-navy/90"
                 >
                   Visit website <ExternalLinkIcon size={14} />
@@ -359,7 +365,7 @@ export function SchoolDetail({ school, basePath, nearby = [] }: Props) {
                 {school.phone && (
                   <li className="flex items-center gap-3">
                     <PhoneIcon size={16} className="shrink-0 text-navy/45" />
-                    <a href={phone ?? undefined} className="font-medium text-navy hover:underline">
+                    <a href={phone ?? undefined} data-track="phone" data-school={school.slug} className="font-medium text-navy hover:underline">
                       {school.phone}
                     </a>
                   </li>
@@ -371,6 +377,8 @@ export function SchoolDetail({ school, basePath, nearby = [] }: Props) {
                       href={school.website_url}
                       target="_blank"
                       rel="noopener noreferrer"
+                  data-track="website"
+                  data-school={school.slug}
                       className="truncate font-medium text-navy hover:underline"
                     >
                       {school.website_url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}
@@ -407,6 +415,8 @@ export function SchoolDetail({ school, basePath, nearby = [] }: Props) {
           {phone && (
             <a
               href={phone}
+              data-track="phone"
+              data-school={school.slug}
               className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-xl border border-navy/15 text-sm font-medium text-navy"
             >
               <PhoneIcon size={16} /> Call
@@ -417,6 +427,8 @@ export function SchoolDetail({ school, basePath, nearby = [] }: Props) {
               href={directions}
               target="_blank"
               rel="noopener noreferrer"
+                  data-track="directions"
+                  data-school={school.slug}
               className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-xl border border-navy/15 text-sm font-medium text-navy"
             >
               <NavigationIcon size={16} /> Directions
@@ -427,6 +439,8 @@ export function SchoolDetail({ school, basePath, nearby = [] }: Props) {
               href={school.website_url}
               target="_blank"
               rel="noopener noreferrer"
+                  data-track="website"
+                  data-school={school.slug}
               className="inline-flex h-11 flex-1 items-center justify-center gap-1.5 rounded-xl bg-navy text-sm font-semibold text-cream"
             >
               Website
@@ -497,6 +511,8 @@ function ApplyGuidance({
             href={portal.href}
             target="_blank"
             rel="noopener noreferrer"
+            data-track="admissions_portal"
+            data-school={school.slug}
             className="inline-flex h-10 items-center gap-2 rounded-lg bg-navy px-4 text-sm font-semibold text-cream hover:bg-navy/90"
           >
             Open {portal.name} <ExternalLinkIcon size={14} />
@@ -507,6 +523,8 @@ function ApplyGuidance({
             href={school.website_url}
             target="_blank"
             rel="noopener noreferrer"
+                  data-track="website"
+                  data-school={school.slug}
             className={
               isPublic && portal
                 ? "inline-flex h-10 items-center gap-2 rounded-lg border border-navy/15 px-4 text-sm font-medium text-navy hover:bg-cream"
@@ -519,6 +537,8 @@ function ApplyGuidance({
         {phone && (
           <a
             href={phone}
+            data-track="phone"
+            data-school={school.slug}
             className="inline-flex h-10 items-center gap-2 rounded-lg border border-navy/15 px-4 text-sm font-medium text-navy hover:bg-cream"
           >
             <PhoneIcon size={15} /> Call {school.phone}
@@ -602,6 +622,8 @@ function LocationCard({ school, directions }: { school: School; directions: stri
             href={directions}
             target="_blank"
             rel="noopener noreferrer"
+                  data-track="directions"
+                  data-school={school.slug}
             className="mt-3 inline-flex h-10 items-center gap-2 rounded-lg border border-navy/15 px-4 text-sm font-medium text-navy hover:bg-cream"
           >
             <NavigationIcon size={15} /> Get directions
